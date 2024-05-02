@@ -1,0 +1,6 @@
+<head>
+  <title>Homepage</title>
+  <link rel="icon" type="home/logo" href="D:\Pr0t0tipe\page-logos\log2s\home.png">
+</head>
+ico and png only
+make bigger.
