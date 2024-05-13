@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/css/jquery.dataTables.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel = "icon" href ="" type = "image/x-icon">
 
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>
@@ -29,13 +30,20 @@
                 <h4>STATE DEPARTMENT FOR TRADE</h4>
                 <h6 class="mt-5">ICT DEPARTMENT TECHNICAL SUPPORT REGISTER</h6>
             </div>
+            <?php if (isset($_GET['error'])) { ?>
+		            <p class="error"><?php echo $_GET['error']; ?></p>
+		        <?php } ?>
+
+            <?php if (isset($_GET['success'])) { ?>
+                    <p class="success"><?php echo $_GET['success']; ?></p>
+                <?php } ?>
             <div class="form-body mt-2">
                 <div class="row d-flex align-items-center justify-content-center">
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-header">Login </div>
                             <div class="card-body">
-                                <form action="home_page.php">
+                                <form action="login.php" method="post">
                                     <div class="form-group mb-3">
                                         <label for="" class="form-control-label">Select Type of User</label>
                                         <select name="user_type" id="" class="form-control">
@@ -45,15 +53,15 @@
                                         </select>
                                     </div>
                                     <div class="form-group mb-2">
-                                        <label for="" class="form-control-label" name="officer_code">Officer Code</label>
-                                        <input type="text" class="form-control">
+                                        <label for="" class="form-control-label" >Officer Code</label>
+                                        <input type="text" name="officer_Code" class="form-control">
                                     </div>
                                     <div class="form-group mb-2">
-                                        <label for="" class="form-control-label" name="password">Password</label>
-                                        <input type="password" class="form-control">
+                                        <label for="" class="form-control-label" >Password</label>
+                                        <input name="password" type="password" class="form-control">
                                     </div>
                                     <a href="" class="mb-2">forgot password</a>
-                                    <input type="submit" value="Login" class="btn btn-primary w-100">
+                                    <input name="login" type="submit" value="Login" class="btn btn-primary w-100">
                                 </form>
                             </div>
                         </div>
