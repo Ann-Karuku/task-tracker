@@ -1,3 +1,14 @@
+<!-- create_new_office.php -->
+<?php
+session_start();
+
+// Check if user is logged in and is an admin
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+    header("Location: unauthorized.php"); // Redirect to unauthorized page
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
