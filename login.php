@@ -1,3 +1,27 @@
+<!-- login.php -->
+<?php
+session_start();
+
+// Define user roles
+$roles = ['admin', 'officer'];
+
+if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $role = $_POST['role'];
+
+    // Perform authentication based on role
+    if ($role === 'admin') {
+        // Admin authentication logic
+    } elseif ($role === 'officer') {
+        // Officer authentication logic
+    }
+
+    // Redirect based on authentication
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
