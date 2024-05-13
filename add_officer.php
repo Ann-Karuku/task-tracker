@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/icons/feather/css/feather.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/jquery.dataTables.css">
+    <link rel="stylesheet"a href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/jquery.dataTbles.css">
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -75,59 +75,42 @@
     <main class="content">
         <div class="content-header">
             <div class="title">
-                <h4>Task</h4>
+                <h4>Officer</h4>
             </div>
             <div class="navigation">
                 <span><a href="index.php"><i class="feather icon-home"></i></a></span>
                 <span>/</span>
-                <span class="text-fade">Add Task</span>
+                <span class="text-fade">Add Officer</span>
             </div>
         </div>
         <div class="content-body">
             <form action="">
-                <div class="row">
+                <div class="column">
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Date</label>
-                            <input type="date" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Office Number</label>
-                            <input type="number" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Department</label>
+                            <label for="" class="form-control-label">Officer Code</label>
                             <input type="text" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Support Requested For</label>
-                            <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Support Given</label>
-                            <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Remarks</label>
-                            <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Supporting Officer Code</label>
+                            <label for="" class="form-control-label">Office Name</label>
                             <input type="text" class="form-control" required>
                         </div>
                     </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-control-label">Designation</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="" class="form-control-label">Phone Number</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>                              
+
                 </div>
                 <input type="submit" value="Submit" class="btn btn-primary">
                 <input type="reset" value="Clear" class="btn btn-warning">
