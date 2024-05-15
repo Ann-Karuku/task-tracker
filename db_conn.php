@@ -1,7 +1,15 @@
 <?php
 
-$conn = new mysqli('localhost','root','','dbname');
+// Create connection
+$conn = mysqli_connect("localhost", "root", "");
 
+// Check connection
 if (!$conn) {
-	echo "Connection failed!";
+  echo "Connection Failed!";
+}else{
+    echo "Connected successfully";
 }
+
+?>
+
+

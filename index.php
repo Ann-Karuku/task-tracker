@@ -30,13 +30,7 @@
                 <h4>STATE DEPARTMENT FOR TRADE</h4>
                 <h6 class="mt-5">ICT DEPARTMENT TECHNICAL SUPPORT REGISTER</h6>
             </div>
-            <?php if (isset($_GET['error'])) { ?>
-		            <p class="error"><?php echo $_GET['error']; ?></p>
-		        <?php } ?>
-
-            <?php if (isset($_GET['success'])) { ?>
-                    <p class="success"><?php echo $_GET['success']; ?></p>
-                <?php } ?>
+            
             <div class="form-body mt-2">
                 <div class="row d-flex align-items-center justify-content-center">
                     <div class="col-md-4">
