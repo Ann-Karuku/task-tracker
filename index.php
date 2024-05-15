@@ -31,12 +31,25 @@
                 <h6 class="mt-5">ICT DEPARTMENT TECHNICAL SUPPORT REGISTER</h6>
             </div>
             
+            
             <div class="form-body mt-2">
                 <div class="row d-flex align-items-center justify-content-center">
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card"> 
+
+                            <!-- display the error -->
+                            <?php if (isset($_GET['error'])) { ?>
+                                <p class="error"><?php echo $_GET['error']; ?></p>
+                            <?php } ?>
+
+                            <!-- Display success message -->
+                            <?php if (isset($_GET['success'])) { ?>
+                                        <p class="success"><?php echo $_GET['success']; ?></p>
+                            <?php } ?>
+
                             <div class="card-header">Login </div>
                             <div class="card-body">
+
                                 <form action="login.php" method="post">
                                     <div class="form-group mb-3">
                                         <label for="" class="form-control-label">Select Type of User</label>
