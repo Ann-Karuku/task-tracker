@@ -20,7 +20,7 @@
 
     <header class="header">
         <div class="title-tab">
-            <a href="home_page.php" class="navbar-brand">
+            <a href="index.php" class="navbar-brand">
                 <div class="icon">
                     <img src="assets/images/arms.png" alt="">
                 </div>
@@ -46,7 +46,7 @@
             <span class="text-fade">navigation</span>
         </div>
         <div class="sidebar-menu">
-            <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="index.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -67,7 +67,7 @@
             </div>
             <div class="drop-content">
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
+                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
             </div>
             <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
@@ -78,7 +78,7 @@
                 <h4>Task</h4>
             </div>
             <div class="navigation">
-                <span><a href="home_page.php"><i class="feather icon-home"></i></a></span>
+                <span><a href="index.php"><i class="feather icon-home"></i></a></span>
                 <span>/</span>
                 <span class="text-fade">Add Task</span>
             </div>
