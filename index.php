@@ -66,7 +66,9 @@
                                     <div class="form-group mb-2">
                                         <label for="" class="form-control-label" >Password</label>
                                         <input name="password" type="password" class="form-control">
+                                        
                                     </div>
+
                                     <a href="" class="mb-2">forgot password</a>
                                     <input name="login" type="submit" value="Login" class="btn btn-primary w-100">
                                 </form>
