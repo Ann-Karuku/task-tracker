@@ -2,13 +2,6 @@
 <?php
 session_start();
 
-// Check if user is logged in and is an admin
-if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
-    header("Location: unauthorized.php"); // Redirect to unauthorized page
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +73,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
                 <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
             </div>
-            <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
+            <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
     <main class="content">
@@ -180,7 +173,8 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>

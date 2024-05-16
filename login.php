@@ -5,7 +5,12 @@ include "db_conn.php";
 
 if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
 
-    //Fuctin to remove unwanted characters and spaces
+        // Retrieve the selected role from the form
+        $role = $_POST['user_type'];
+
+           
+    
+    //Fuction to remove unwanted characters and spaces
     function validate($data){
 
         $data = trim($data);
@@ -45,6 +50,9 @@ if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
             $row = mysqli_fetch_assoc($result);
 
             if ($row['Officer_Code'] === $officer_Code && $row['Password'] === $pass) {
+
+                 // Store the role in session for future use
+                $_SESSION['user_type'] = $role;
 
                 $_SESSION['officer_code'] = $row['Officer_Code'];
 

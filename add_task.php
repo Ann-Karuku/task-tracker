@@ -1,3 +1,21 @@
+<?php
+session_start();
+
+// Check if the role is set in session
+    $role = $_SESSION['user_type'];
+
+    if($role=='----select user type---'){
+        // If not, redirect back to the login page
+        header("Location: index.php?error=Please select user type!");
+    }
+        // Retrieve the role from session
+    $officer_name=$_SESSION['officer_name'];
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,6 +76,8 @@
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
                 <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Task</span></a>
             </div>
+     
+            <?php if ($role === 'Admin'): ?>
             <div class="drop">
                 <span>
                     <span class="feather icon-users"></span>
@@ -69,7 +89,9 @@
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
                 <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
             </div>
-            <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
+            <?php endif; ?>
+
+            <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
     <main class="content">
@@ -136,7 +158,8 @@
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
