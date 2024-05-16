@@ -95,7 +95,8 @@
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith, Charity and Deity</span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith, Charity and Deity</span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
