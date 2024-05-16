@@ -65,7 +65,9 @@
                                     </div>
                                     <div class="form-group mb-2">
                                         <label for="" class="form-control-label" >Password</label>
-                                        <input name="password" type="password" class="form-control">
+                                        <input name="password" type="password" class="form-control" id="myInput">
+                                        <br>
+                                        <input type="checkbox" onclick="myFunction()">Show Password
                                     </div>
                                     <a href="" class="mb-2">forgot password</a>
                                     <input name="login" type="submit" value="Login" class="btn btn-primary w-100">
@@ -83,6 +85,16 @@
                 $(this).remove()
             }).delay(100)
         })
+
+        //toggle password
+        function myFunction() {
+            var x = document.getElementById("myInput");
+             if (x.type === "password") {
+                 x.type = "text";
+                } else {
+            x.type = "password";
+            }
+        }
     </script>
 </body>
 </html>
