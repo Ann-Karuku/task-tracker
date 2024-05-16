@@ -24,27 +24,7 @@ if (isset($_POST['login'])) {
 		// hashing the psw
         $password = md5($password);
         header("Location: home_page.php");
-        
-		/*$sql = "SELECT * FROM  WHERE ='$' AND Password='$password'";
-
-		$result = mysqli_query($conn, $sql);
-
-		if (mysqli_num_rows($result) === 1) {
-			$row = mysqli_fetch_assoc($result);
-            if ($row['email'] === $email && $row['Password'] === $password) {
-            	$_SESSION['email'] = $row['CompanyID'];
-            	$_SESSION['CompanyName'] = $row['CompanyName'];
-            	header("Location: home_page.php");
-		        exit();
-            }else{
-				header("Location: index.php?error=Incorect Code or password");
-		        exit();
-			}
-		}else{
-			header("Location: index.php?error=Incorect Code or password");
-	        exit();
-		}*/
-	}
+      
 	
 }else{
 	header("Location: index.php");
