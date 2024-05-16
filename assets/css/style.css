@@ -239,6 +239,26 @@ body {
     }
 }
 
+/*formatting input validation errors*/
+.error {
+    background: #F2DEDE;
+    color: #A94442;
+    padding: 10px;
+    width: 90%;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px auto;
+ }
+ 
+ .success {
+    background: #D4EDDA;
+    color: #40754C;
+    padding: 10px;
+    width: 95%;
+    border-radius: 5px;
+    margin: 20px auto;
+ }
+
 footer {
     position: absolute;
     bottom: 0; left: 250px;

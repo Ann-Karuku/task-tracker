@@ -17,10 +17,10 @@
 </head>
 <body>
     <div class="preloader"></div>
-
+    
     <header class="header">
         <div class="title-tab">
-            <a href="index.php" class="navbar-brand">
+            <a href="home_page.php" class="navbar-brand">
                 <div class="icon">
                     <img src="assets/images/arms.png" alt="">
                 </div>
@@ -46,7 +46,7 @@
             <span class="text-fade">navigation</span>
         </div>
         <div class="sidebar-menu">
-            <a href="index.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -67,7 +67,7 @@
             </div>
             <div class="drop-content">
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
+                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
             </div>
             <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
@@ -75,69 +75,27 @@
     <main class="content">
         <div class="content-header">
             <div class="title">
-                <h4>Task</h4>
+                <h4>Dashboard</h4>
             </div>
             <div class="navigation">
-                <span><a href="index.php"><i class="feather icon-home"></i></a></span>
+                <span><a href="home_page.php"><i class="feather icon-home"></i></a></span>
                 <span>/</span>
-                <span class="text-fade">Add Task</span>
+                <span class="text-fade">Dashboard</span>
             </div>
         </div>
         <div class="content-body">
-            <form action="">
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Date</label>
-                            <input type="date" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Office Number</label>
-                            <input type="number" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Department</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Support Requested For</label>
-                            <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Support Given</label>
-                            <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Remarks</label>
-                            <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Supporting Officer Code</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                    </div>
+            <div class="banner">
+                <div class="banner-text">
+                    <h1>MINISTRY OF INVESTMENTS, TRADE & INDUSTRY</h1>
+                    <h2>STATE DEPARTMENT FOR TRADE</h2>
+                    <h4>ICT DEPARTMENT TECHNICAL SUPPORT REGISTER</h4>
                 </div>
-                <input type="submit" value="Submit" class="btn btn-primary">
-                <input type="reset" value="Clear" class="btn btn-warning">
-            </form>
+            </div>
         </div>
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
-            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>

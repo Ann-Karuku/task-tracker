@@ -1,74 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Task Tracker</title>
-    
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+<?php
+session_start(); 
 
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.dataTables.js"></script>
-</head>
-<body>
+include "db_conn.php";
 
-    <div class="preloader"></div>
+if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
 
-    <main class="m-footer">
-        <div class="container">
-            <div class="form-header text-center pt-4">
-                <img src="assets/images/arms.png" alt="">
-                <h4>REPUBLIC OF KENYA</h4>
-                <br><br>
-                <h4>MINISTRY OF INVESTMENTS, TRADE & INDUSTRY</h4>
-                <h4>STATE DEPARTMENT FOR TRADE</h4>
-                <h6 class="mt-5">ICT DEPARTMENT TECHNICAL SUPPORT REGISTER</h6>
-            </div>
-            <div class="form-body mt-2">
-                <div class="row d-flex align-items-center justify-content-center">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header">Login </div>
-                            <div class="card-body">
-                                <form action="">
-                                    <div class="form-group mb-3">
-                                        <label for="" class="form-control-label">Select Type of User</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">----select user type---</option>
-                                            <option value="1">Admin</option>
-                                            <option value="2">Officer</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="" class="form-control-label">Officer Code</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <label for="" class="form-control-label">Password</label>
-                                        <input type="password" class="form-control">
-                                    </div>
-                                    <a href="" class="mb-2">forgot password</a>
-                                    <input type="submit" value="Login" class="btn btn-primary w-100">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    //Fuctin to remove unwanted characters and spaces
+    function validate($data){
 
-    <script>
-        $(document).ready(()=>{
-            $('.preloader').fadeOut('slow', function(){
-                $(this).remove()
-            }).delay(100)
-        })
-    </script>
-</body>
-</html>
+        $data = trim($data);
+ 
+        $data = stripslashes($data);
+ 
+        $data = htmlspecialchars($data);
+ 
+        return $data;
+ 
+     }
+
+     //apply the function to the input
+	$officer_Code=validate($_POST['officer_Code']);
+	$pass=validate($_POST['password']);
+
+    //check if the required fields are empty if not login
+	if (empty($officer_Code)) {
+
+        header("Location: index.php?error=Officer code is required!");
+        exit();
+
+    }else if(empty($pass)){
+        header("Location: index.php?error=please enter password!");
+        exit();
+
+    }else{
+
+        //sql query to select and compare details entered and those in the DB
+        $sql= "SELECT * FROM `officers` WHERE Officer_Code= '$officer_Code' AND Password='$pass'";
+        $result = mysqli_query($conn, $sql);//pass the query to the mysql connection
+
+
+        //check if there's a result of the query
+        if (mysqli_num_rows($result) === 1) {
+
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row['Officer_Code'] === $officer_Code && $row['Password'] === $pass) {
+
+                $_SESSION['officer_code'] = $row['Officer_Code'];
+
+                $_SESSION['officer_name'] = $row['Officer_Name'];
+
+                header("Location: home_page.php?success=Login Successful!");
+                exit();
+
+            }else{ //if not then display error
+
+                header("Location: index.php?error=Incorect Code or password");
+
+                exit();
+
+            }
+
+        }else{
+            header("Location: index.php?error=Officer Does not Exist!"); 
+        }
+	}
+
+}
+
+
+
+
+?>

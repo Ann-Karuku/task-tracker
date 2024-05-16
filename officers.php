@@ -1,3 +1,13 @@
+<!-- view_officer.php -->
+<?php
+session_start();
+
+// Check if user is logged in and is an admin
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+    header("Location: unauthorized.php"); // Redirect to unauthorized page
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,8 +66,8 @@
                 <span class="feather icon-chevron-right"></span>
             </div>
             <div class="drop-content">
-                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
-                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Task</span></a>
+                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
+                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
             </div>
             <div class="drop">
                 <span>
@@ -81,17 +91,17 @@
             <div class="navigation">
                 <span><a href="index.php"><i class="feather icon-home"></i></a></span>
                 <span>/</span>
-                <span class="text-fade">View Task</span>
+                <span class="text-fade">View officer</span>
             </div>
         </div>
         <div class="content-body">
             <table id="table_id" width="100%" class="cell-border hover nowrap">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Office N0</th>
-                        <th>Department</th>
-                        <th>Support Request</th>
+                        <th>officer code</th>
+                        <th>Office Name</th>
+                        <th>Designation</th>
+                        <th>Phone Number</th>
                         <th>Support Given</th>
                         <th>Supporting Officer</th>
                         <th>Remarks</th>
@@ -100,65 +110,65 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>  </td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>  </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
@@ -170,7 +180,8 @@
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
