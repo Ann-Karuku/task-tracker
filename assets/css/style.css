@@ -248,3 +248,22 @@ footer {
     align-items: center;
     color: #fff;
 }
+.password-container {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .password-input {
+    width: 100%;
+    padding-right: 30px; /* Make space for the eye icon */
+  }
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 2px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 25px; /* Set width */
+    height:25px; /* Set height */
+  }

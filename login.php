@@ -20,8 +20,6 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
     // Redirect based on authentication
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,12 +33,13 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
     <link rel="stylesheet" href="assets/css/jquery.dataTables.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.dataTables.js"></script>
 </head>
 <body>
-
+s
     <div class="preloader"></div>
 
     <main class="m-footer">
@@ -72,9 +71,18 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
                                         <label for="" class="form-control-label">Officer Code</label>
                                         <input type="text" class="form-control">
                                     </div>
-                                    <div class="form-group mb-2">
+                                    <!-- <div class="form-group mb-2">
                                         <label for="" class="form-control-label">Password</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" class="form-control ">
+                                        
+                                        
+                                        <img src="images/eyeicon.png" class="eye-icon" id="togglePassword" alt="Show password">
+
+                                    </div> -->
+                                    <div class="password-container">
+                                    <input type="password" class="password-input" id="password" placeholder="Enter password">
+                                    <img src="images/eyeicon.png" class="eye-icon" id="togglePassword" alt="Show password">
+                                    
                                     </div>
                                     <a href="" class="mb-2">forgot password</a>
                                     <input type="submit" value="Login" class="btn btn-primary w-100">
