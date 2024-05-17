@@ -54,9 +54,9 @@
                                     <div class="form-group mb-3">
                                         <label for="" class="form-control-label">Select Type of User</label>
                                         <select name="user_type" id="" class="form-control">
-                                            <option value="">----select user type---</option>
-                                            <option value="1">Admin</option>
-                                            <option value="2">Officer</option>
+                                            <option >----select user type---</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Officer">Officer</option>
                                         </select>
                                     </div>
                                     <div class="form-group mb-2">

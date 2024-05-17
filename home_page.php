@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+// Check if the role is set in session
+    $role = $_SESSION['user_type'];
+
+    if($role=='----select user type---'){
+        // If not, redirect back to the login page
+        header("Location: index.php?error=Please select user type!");
+    }
+        // Retrieve the role from session
+    $officer_name=$_SESSION['officer_name'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +50,7 @@
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span>omar mathias</span>
+                <span><?php echo $officer_name?></span>
                 <a href="#"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
@@ -58,6 +73,7 @@
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
                 <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Task</span></a>
             </div>
+            <?php if ($role === 'Admin'): ?>
             <div class="drop">
                 <span>
                     <span class="feather icon-users"></span>
@@ -66,10 +82,15 @@
                 <span class="feather icon-chevron-right"></span>
             </div>
             <div class="drop-content">
+            
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
                 <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
-            </div>
-            <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
+                </div>
+            <?php endif; ?>
+                
+                
+            
+            <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
     <main class="content">
@@ -89,6 +110,8 @@
                     <h1>MINISTRY OF INVESTMENTS, TRADE & INDUSTRY</h1>
                     <h2>STATE DEPARTMENT FOR TRADE</h2>
                     <h4>ICT DEPARTMENT TECHNICAL SUPPORT REGISTER</h4>
+                    <h2>Welcome</h2>
+                     <p>You are logged in as <?php echo $role; ?>.</p>      
                 </div>
             </div>
         </div>
@@ -96,6 +119,8 @@
     <footer>
         <marquee behavior="alternate" direction="">
             &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
+            <br>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Brian, Delron, Keziah and Daniel</span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
