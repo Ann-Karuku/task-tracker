@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="form-group mb-2">
                                         <label for="" class="form-control-label" >Password</label>
-                                        <input name="password" type="password" class="form-control">
+                                        <input name="password" type="password" class="form-control" id="myInput">
                                         <br>
                                         <input type="checkbox" onclick="myFunction()">Show Password
                                     </div>

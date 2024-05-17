@@ -51,15 +51,20 @@ if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
 
             if ($row['Officer_Code'] === $officer_Code && $row['Password'] === $pass) {
 
-                 // Store the role in session for future use
+                if($row['Officer_Designation']!=$role){
+                    header("Location: index.php?error=Kindly select the correct role!");
+                }else{
+                     // Store the role in session for future use
                 $_SESSION['user_type'] = $role;
 
                 $_SESSION['officer_code'] = $row['Officer_Code'];
 
                 $_SESSION['officer_name'] = $row['Officer_Name'];
 
-                header("Location: home_page.php?success=Login Successful!");
+                header("Location: home_page.php");
                 exit();
+                }
+                
 
             }else{ //if not then display error
 
