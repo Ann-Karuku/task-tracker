@@ -1,14 +1,15 @@
 <?php
 session_start();
 
-// Check if the role is set in session
+    // Retrieve the role from session
     $role = $_SESSION['user_type'];
 
+    // Check if the role is set in session
     if($role=='----select user type---'){
         // If not, redirect back to the login page
         header("Location: index.php?error=Please select user type!");
     }
-        // Retrieve the role from session
+        // Retrieve the name from session
     $officer_name=$_SESSION['officer_name'];
 
 
