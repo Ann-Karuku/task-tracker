@@ -1,10 +1,14 @@
 <!-- view_officer.php -->
 <?php
 session_start();
+$officer_name=$_SESSION['officer_name'];
+
 include_once "db_conn.php";
 
 $sql="SELECT * FROM `officers` WHERE Officer_Designation='Officer'";
 $result = mysqli_query($conn, $sql);
+
+
 
 ?>
 
@@ -45,7 +49,7 @@ $result = mysqli_query($conn, $sql);
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span>omar mathias</span>
+                <span><?php echo $officer_name?></span>
                 <a href="#"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
@@ -116,7 +120,11 @@ $result = mysqli_query($conn, $sql);
 					while($record = mysqli_fetch_assoc($result)) {	
 			          ?>
                     <tr>
-                        <td><?php echo $record['Profile_Pic']; ?></td>
+                        <td>
+                            <div class="profile-photo">
+                                <?php echo $record['Profile_Pic']; ?>
+                             </div>
+                        </td>
                         <td><?php echo $record['Officer_Code']; ?></td>
                         <td><?php echo $record['Officer_Name']; ?></td>
                         <td><?php echo $record['Officer_Designation']; ?></td>
