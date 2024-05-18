@@ -1,6 +1,12 @@
 <!-- view_officer.php -->
 <?php
 session_start();
+include_once "db_conn.php";
+
+$sql="SELECT * FROM `officers` WHERE Officer_Designation='Officer'";
+$result = mysqli_query($conn, $sql);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +85,7 @@ session_start();
     <main class="content">
         <div class="content-header">
             <div class="title">
-                <h4>Task</h4>
+                <h4>Officers</h4>
             </div>
             <div class="navigation">
                 <span><a href="index.php"><i class="feather icon-home"></i></a></span>
@@ -91,82 +97,38 @@ session_start();
             <table id="table_id" width="100%" class="cell-border hover nowrap">
                 <thead>
                     <tr>
-                        <th>officer code</th>
-                        <th>Office Name</th>
+                        <th>Officer Picture</th>                        
+                        <th>Officer code</th>
+                        <th>Officer Name</th>
                         <th>Designation</th>
                         <th>Phone Number</th>
-                        <th>Support Given</th>
-                        <th>Supporting Officer</th>
+                        <th>Department</th>
                         <th>Remarks</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php
+					if (mysqli_num_rows($result)==0) {
+							echo '<span style="color:#0066cc;">There are no payments at the moment.</span>';
+						}
+					
+					while($record = mysqli_fetch_assoc($result)) {	
+			          ?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?php echo $record['Profile_Pic']; ?></td>
+                        <td><?php echo $record['Officer_Code']; ?></td>
+                        <td><?php echo $record['Officer_Name']; ?></td>
+                        <td><?php echo $record['Officer_Designation']; ?></td>
+                        <td><?php echo $record['Officer_Contact']; ?></td>
+                        <td><?php echo $record['Department']; ?></td>                        
+                        <td><?php echo $record['Remarks']; ?></td>
                         <td>
                             <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>  </td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>  </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
