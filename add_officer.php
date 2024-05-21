@@ -84,48 +84,52 @@
             </div>
         </div>
         <div class="content-body">
-            <form action="">
+            <form action= "create_officer.php" method="post">
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Name</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="Officer_Name" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
-                            <input type="text" class="form-control" required>
+                            <select name="Officer_Designation" id="" class="form-control" required>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Officer">Officer</option>
+                                        </select>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Department</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="Department" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Contact</label>
-                            <input type="number"  class="form-control">
+                            <input type="number"name="Officer_Contact"class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Code</label>
-                            <input type="number" class="form-control">
+                            <input type="number" name="Officer_Code" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Remarks</label>
-                            <textarea name="" id="" cols="30" rows="1" class="form-control"></textarea>
+                            <label for="" class="form-control-label">Password</label>
+                            <input type="text" name="Password" class="form-control">
+                        
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Passport photo</label>
-                              <input type="file" class="form-control">
+                              <input type="file" name="image" class="form-control">
                         </div>
                     </div>
                 </div>
