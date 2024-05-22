@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Password = $_POST['Password'];
 
     // File upload directory 
-    $targetDir = "uploads/"; 
+    $targetDir = "assets/uploads/"; 
 
     if (!empty($_FILES["image"]["name"])) { 
         $fileName = basename($_FILES["image"]["name"]); 
@@ -33,27 +33,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bind_param("sssssss", $Officer_Code, $Officer_Name, $Officer_Designation, $Department, $Officer_Contact, $Password, $fileName);
 
                 if ($stmt->execute()) {
-                    echo "New Officer created successfully";
                     $stmt->close();
                     $conn->close();
-                    header("Location: officers.php");
-                    exit();
+                    header("Location: add_officer.php?Success=New Officer created successfully");
+                 exit();
                 } else {
                     echo "Error " . $sql . "<br>" . $conn->error;
                 }
             } else {
-                echo "Sorry, there was an error uploading your file.";
+                header("Location: add_officer.php?error=Sorry, there was an error uploading your file!");
+                 exit();
             }
         } else {
-            echo 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
+            header("Location: add_officer.php?error=Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload!");
+            exit();
         }
     } else {
-        echo "Please upload a file";
+        header("Location: add_officer.php?error=please upload a file!");
+         exit();
     }
 } else {
-    echo "Error";
     $conn->close();
-    header("Location: add_officer.php");
+    header("Location: add_officer.php?error=unknown error occured!");
     exit();
 }
 ?>

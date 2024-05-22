@@ -50,7 +50,7 @@ $result = mysqli_query($conn, $sql);
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>
-                <a href="#"><span class="feather icon-power text-danger"></span></a>
+                <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
     </header>
