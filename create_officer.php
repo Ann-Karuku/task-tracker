@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Officer_Contact = $_POST['Officer_Contact'];
     $Officer_Code = $_POST['Officer_Code'];
     $Password = $_POST['Password'];
+    $Remarks = $_POST['Remarks'];
 
     // File upload directory 
     $targetDir = "assets/uploads/"; 
@@ -25,17 +26,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (in_array($fileType, $allowTypes)) { 
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) { 
-                $sql = "INSERT INTO officers (Officer_Code, Officer_Name, Officer_Designation, Department, Officer_Contact, Password, Profile_Pic) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO officers (Officer_Code, Officer_Name, Officer_Designation, Department, Officer_Contact, Remarks, Password, Profile_Pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             
                 $stmt = $conn->prepare($sql);
 
                 // Bind parameters with data types
-                $stmt->bind_param("sssssss", $Officer_Code, $Officer_Name, $Officer_Designation, $Department, $Officer_Contact, $Password, $fileName);
+                $stmt->bind_param("ssssssss", $Officer_Code, $Officer_Name, $Officer_Designation, $Department, $Officer_Contact, $Remarks, $Password, $fileName);
 
                 if ($stmt->execute()) {
                     $stmt->close();
                     $conn->close();
-                    header("Location: add_officer.php?Success=New Officer created successfully");
+                    header("Location: add_officer.php?success=New Officer created successfully");
                  exit();
                 } else {
                     echo "Error " . $sql . "<br>" . $conn->error;
