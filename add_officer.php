@@ -142,6 +142,13 @@ $officer_name=$_SESSION['officer_name'];
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
+                            <label for="" class="form-control-label">Remarks</label>
+                            <input type="text" name="Remarks" class="form-control">
+                        
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
                             <label for="" class="form-control-label">Passport photo</label>
                               <input type="file" name="image" class="form-control">
                         </div>
@@ -154,8 +161,7 @@ $officer_name=$_SESSION['officer_name'];
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
-            &copy; 2024 <span>By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia @2024 By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
