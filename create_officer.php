@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Password = $_POST['Password'];
 
     // File upload directory 
-    $targetDir = "uploads/"; 
+    $targetDir = "assets/uploads/"; 
 
     if (!empty($_FILES["image"]["name"])) { 
         $fileName = basename($_FILES["image"]["name"]); 
