@@ -1,3 +1,8 @@
+<?php
+session_start();
+$officer_name=$_SESSION['officer_name'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +40,8 @@
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span>omar mathias</span>
-                <a href="#"><span class="feather icon-power text-danger"></span></a>
+                <span><?php echo $officer_name?></span>
+                <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
     </header>
