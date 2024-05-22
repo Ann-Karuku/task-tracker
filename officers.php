@@ -107,7 +107,7 @@ $result = mysqli_query($conn, $sql);
                         <th>Designation</th>
                         <th>Phone Number</th>
                         <th>Department</th>
-                        <th>Remarks</th>
+                        <th>Password</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

@@ -11,6 +11,15 @@ session_start();
         // Retrieve the role from session
     $officer_name=$_SESSION['officer_name'];
 
+ 
+if(isset($_GET['logout'])) {
+    // Destroy session
+    session_destroy();
+    // Redirect to login page
+    header("Location: index.php");
+    exit; // Ensure script stops executing after redirection
+}
+
 
 ?>
 
@@ -146,7 +155,7 @@ session_start();
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Supporting Officer Code</label>
+                            <label for="" class="form-control-label">Supporting Officer</label>
                             <input type="text" class="form-control" required>
                         </div>
                     </div>

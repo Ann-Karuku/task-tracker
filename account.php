@@ -1,6 +1,13 @@
 <!-- view_officer.php -->
 <?php
 session_start();
+if(isset($_GET['logout'])) {
+    // Destroy session
+    session_destroy();
+    // Redirect to login page
+    header("Location: index.php");
+    exit; // Ensure script stops executing after redirection
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +48,7 @@ session_start();
             </div>
             <div class="profile-description">
                 <span>omar mathias</span>
-                <a href="#"><span class="feather icon-power text-danger"></span></a>
+                <a href="?logout=true"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
     </header>

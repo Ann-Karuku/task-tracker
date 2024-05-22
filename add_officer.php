@@ -1,3 +1,8 @@
+<?php
+session_start();
+$officer_name=$_SESSION['officer_name'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,8 +40,8 @@
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span>omar mathias</span>
-                <a href="#"><span class="feather icon-power text-danger"></span></a>
+                <span><?php echo $officer_name?></span>
+                <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
     </header>
@@ -84,7 +89,16 @@
             </div>
         </div>
         <div class="content-body">
-            <form action= "create_officer.php" method="post">
+                             <!-- display the error -->
+                            <?php if (isset($_GET['error'])) { ?>
+                                <p class="error"><?php echo $_GET['error']; ?></p>
+                            <?php } ?>
+
+                            <!-- Display success message -->
+                            <?php if (isset($_GET['success'])) { ?>
+                                        <p class="success"><?php echo $_GET['success']; ?></p>
+                            <?php } ?>
+            <form action= "create_officer.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
@@ -128,6 +142,13 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
+                            <label for="" class="form-control-label">Remarks</label>
+                            <input type="text" name="Remarks" class="form-control">
+                        
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
                             <label for="" class="form-control-label">Passport photo</label>
                               <input type="file" name="image" class="form-control">
                         </div>
@@ -140,8 +161,7 @@
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
-            &copy; 2024 <span>By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia @2024 By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
