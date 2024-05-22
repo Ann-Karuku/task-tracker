@@ -100,6 +100,17 @@ $result = mysqli_query($conn, $sql);
         <div class="content-body">
             <form action= ""method = "POST" enctype="multipart/formdata">
 
+                 <!-- display the error -->
+                 <?php if (isset($_GET['error'])) { ?>
+                                <p class="error"><?php echo $_GET['error']; ?></p>
+                            <?php } ?>
+
+                            <!-- Display success message -->
+                            <?php if (isset($_GET['success'])) { ?>
+                                        <p class="success"><?php echo $_GET['success']; ?></p>
+                            <?php } ?>
+
+
             <table id="table_id" width="100%" class="cell-border hover nowrap">
                 <thead>
                     <tr>
@@ -134,6 +145,11 @@ $result = mysqli_query($conn, $sql);
                         <td><?php echo $record['Department']; ?></td>                        
                         <td><?php echo $record['Remarks']; ?></td>
                         <td>
+                            <?php
+                              $_SESSION['officer_code'] = $record['Officer_Code'];
+
+                            ?>
+                        <input type="hidden" name="Officer_Code" value="<?php  $record['Officer_Code'];?>">
                             <a href="edit.php" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                         </td>
