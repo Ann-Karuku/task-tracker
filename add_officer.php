@@ -84,7 +84,16 @@
             </div>
         </div>
         <div class="content-body">
-            <form action= "create_officer.php" method="post">
+                             <!-- display the error -->
+                            <?php if (isset($_GET['error'])) { ?>
+                                <p class="error"><?php echo $_GET['error']; ?></p>
+                            <?php } ?>
+
+                            <!-- Display success message -->
+                            <?php if (isset($_GET['success'])) { ?>
+                                        <p class="success"><?php echo $_GET['success']; ?></p>
+                            <?php } ?>
+            <form action= "create_officer.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
