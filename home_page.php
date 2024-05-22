@@ -48,7 +48,7 @@ session_start();
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/images/pic-1.png" alt="" class="image-responsive">
+                <img src="assets/images/pic-1.png" alt="profilepic" class="image-responsive">
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>
