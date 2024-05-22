@@ -69,8 +69,8 @@ $result = mysqli_query($conn, $sql);
                 <span class="feather icon-chevron-right"></span>
             </div>
             <div class="drop-content">
-                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
+                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
+                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
             </div>
             <div class="drop">
                 <span>
@@ -98,6 +98,8 @@ $result = mysqli_query($conn, $sql);
             </div>
         </div>
         <div class="content-body">
+            <form action= ""method = "POST" enctype="multipart/formdata">
+
             <table id="table_id" width="100%" class="cell-border hover nowrap">
                 <thead>
                     <tr>
@@ -122,7 +124,7 @@ $result = mysqli_query($conn, $sql);
                     <tr>
                         <td>
                             <div class="profile-photo">
-                                <?php echo $record['Profile_Pic']; ?>
+                                <?php echo '<img src="data:image;base64,'.base64_encode($record['Profile_Pic']).'"alt="Profile Pic"'; ?>
                              </div>
                         </td>
                         <td><?php echo $record['Officer_Code']; ?></td>
@@ -132,18 +134,19 @@ $result = mysqli_query($conn, $sql);
                         <td><?php echo $record['Department']; ?></td>                        
                         <td><?php echo $record['Remarks']; ?></td>
                         <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
+                            <a href="edit.php" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <?php } ?>
                 </tbody>
             </table>
+                    </form>
         </div>
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
             &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
