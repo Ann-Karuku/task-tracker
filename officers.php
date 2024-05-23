@@ -86,8 +86,8 @@ $result = mysqli_query($conn, $sql);
                 <span class="feather icon-chevron-right"></span>
             </div>
             <div class="drop-content">
-                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
+                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
+                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
             </div>
             <div class="drop">
                 <span>
@@ -130,10 +130,11 @@ $result = mysqli_query($conn, $sql);
                 </thead>
                 <tbody>
                 <?php
+                //To tell you when no officers are in the DB
 					if (mysqli_num_rows($result)==0) {
-							echo '<span style="color:#0066cc;">There are no payments at the moment.</span>';
+							echo '<span style="color:#0066cc;">There are no officers.</span>';
 						}
-					
+					//Loop through the database to display all rows
 					while($record = mysqli_fetch_assoc($result)) {	
 			          ?>
                     <tr>
@@ -149,6 +150,13 @@ $result = mysqli_query($conn, $sql);
                         <td><?php echo $record['Department']; ?></td>                        
                         <td><?php echo $record['Remarks']; ?></td>
                         <td>
+                            <?php
+                              $_SESSION['officer_code'] = $record['Officer_Code'];
+
+                            ?>
+                        <input type="hidden" name="Officer_Code" value="<?php  $record['Officer_Code'];?>">
+                            <a href="edit.php" class="btn btn-primary"><i class="feather icon-edit"></i></a>
+                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                             <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="?Officer_Code=<?php echo $record['Officer_Code']; ?>" class="btn btn-danger" onclick="confirmDelete(<?php echo $record['Officer_Code']; ?>)"><i class="feather icon-trash-2"></i></a>
                         </td>
@@ -160,7 +168,7 @@ $result = mysqli_query($conn, $sql);
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
             &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
