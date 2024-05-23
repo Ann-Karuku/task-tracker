@@ -98,6 +98,7 @@ $result = mysqli_query($conn, $sql);
             </div>
         </div>
         <div class="content-body">
+          <form action="" method="POST" enctype="multipart/formdata">
             <table id="table_id" width="100%" class="cell-border hover nowrap">
                 <thead>
                     <tr>
@@ -113,17 +114,18 @@ $result = mysqli_query($conn, $sql);
                 </thead>
                 <tbody>
                 <?php
+                //To tell you when no officers are in the DB
 					if (mysqli_num_rows($result)==0) {
-							echo '<span style="color:#0066cc;">There are no payments at the moment.</span>';
+							echo '<span style="color:#0066cc;">There are no officers.</span>';
 						}
-					
+					//Loop through the database to display all rows
 					while($record = mysqli_fetch_assoc($result)) {	
 			          ?>
                     <tr>
                         <td>
                             <div class="profile-photo">
-                                <?php echo $record['Profile_Pic']; ?>
-                             </div>
+                            <?php echo '<img src="data:image;base64,'.base64_encode($record['Profile_Pic']).'" alt="profilepic">'; ?>
+                             </div>                             
                         </td>
                         <td><?php echo $record['Officer_Code']; ?></td>
                         <td><?php echo $record['Officer_Name']; ?></td>
@@ -139,6 +141,7 @@ $result = mysqli_query($conn, $sql);
                     <?php } ?>
                 </tbody>
             </table>
+          </form>
         </div>
     </main>
     <footer>

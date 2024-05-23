@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($stmt->execute()) {
                     $stmt->close();
                     $conn->close();
-                    header("Location: add_officer.php?Success=New Officer created successfully");
+                    header("Location: add_officer.php?success=New Officer created successfully");
                  exit();
                 } else {
                     echo "Error " . $sql . "<br>" . $conn->error;
