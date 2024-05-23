@@ -9,8 +9,25 @@ $sql="SELECT * FROM `officers` WHERE Officer_Designation='Officer'";
 $result = mysqli_query($conn, $sql);
 
 
+// Check if delete request is made
+if(isset($_GET['Officer_Code'])) {
+    $Officer_Code= $_GET['Officer_Code'];
+    $sql_delete = "DELETE FROM `officers` WHERE Officer_Code= $Officer_Code";
 
+    if(mysqli_query($conn, $sql_delete)) {
+        echo '<div class="alert alert-success" role="alert">Officer deleted successfully.</div>';
+    } else {
+        echo '<div class="alert alert-danger" role="alert">Error deleting officer: ' . mysqli_error($conn) . '</div>';
+    }
+}
+
+$sql = "SELECT * FROM `officers` WHERE Officer_Designation='Officer'";
+$result = mysqli_query($conn, $sql);
 ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -133,7 +150,7 @@ $result = mysqli_query($conn, $sql);
                         <td><?php echo $record['Remarks']; ?></td>
                         <td>
                             <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
+                            <a href="?Officer_Code=<?php echo $record['Officer_Code']; ?>" class="btn btn-danger" onclick="confirmDelete(<?php echo $record['Officer_Code']; ?>)"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -149,6 +166,14 @@ $result = mysqli_query($conn, $sql);
     </footer>
     <script src="assets/js/custom.js"></script>
     <script>
+
+    // function confirmDelete(Officer_Code) {
+    //     var confirmDelete = confirm("Are you sure you want to delete this officer?");
+    //     if (confirmDelete) {
+    //         window.location.href = "?Officer_Code" + Officer_Code;
+    //     }
+    // }
+
         $(document).ready(()=>{
             $('#table_id').DataTable({
                 scrollX: true,
@@ -163,6 +188,8 @@ $result = mysqli_query($conn, $sql);
                 $(this).remove()
             }).delay(100)
         })
+
+    
     </script>
 </body>
 </html>
