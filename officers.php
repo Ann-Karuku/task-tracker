@@ -77,7 +77,7 @@ $result = mysqli_query($conn, $sql);
             <span class="text-fade">navigation</span>
         </div>
         <div class="sidebar-menu">
-            <a href="index.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -167,7 +167,7 @@ $result = mysqli_query($conn, $sql);
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
             &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>

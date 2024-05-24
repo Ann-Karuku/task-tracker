@@ -10,16 +10,13 @@ session_start();
     }
         // Retrieve the role from session
     $officer_name=$_SESSION['officer_name'];
-
- 
-if(isset($_GET['logout'])) {
-    // Destroy session
-    session_destroy();
-    // Redirect to login page
-    header("Location: index.php");
-    exit; // Ensure script stops executing after redirection
-}
-
+    if(isset($_GET['logout'])) {
+        // Destroy session
+        session_destroy();
+        // Redirect to login page
+        header("Location: index.php");
+        exit; // Ensure script stops executing after redirection
+    }
 
 ?>
 
@@ -73,7 +70,7 @@ if(isset($_GET['logout'])) {
             <span class="text-fade">navigation</span>
         </div>
         <div class="sidebar-menu">
-            <a href="index.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -115,47 +112,47 @@ if(isset($_GET['logout'])) {
             </div>
         </div>
         <div class="content-body">
-            <form action="">
+        <form action="new_task.php" method="post">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="" class="form-control-label">Date</label>
-                            <input type="date" class="form-control" required>
+                       <div class="form-group">
+                            <label for="date" class="form-control-label">Date</label>
+                            <input type="date" name="Date" id="date" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Office Number</label>
-                            <input type="number" class="form-control" required>
+                            <label for="office_number" class="form-control-label">Office Number</label>
+                            <input type="number" name="Office_Number" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Department</label>
-                            <input type="text" class="form-control" required>
+                            <label for="department" class="form-control-label">Department</label>
+                            <input type="text" name="Department" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Support Requested For</label>
-                            <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
+                            <label for="support_requested" class="form-control-label">Support Requested For</label>
+                            <textarea name="Support_Requested_For" id="support_requested" cols="30" rows="6" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Support Given</label>
-                            <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
+                            <label for="support_given" class="form-control-label">Support Given</label>
+                            <textarea name="Support_Given" id="support_given" cols="30" rows="6" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Remarks</label>
-                            <textarea name="" id="" cols="30" rows="6" class="form-control"></textarea>
+                            <label for="remarks" class="form-control-label">Remarks</label>
+                            <textarea name="Remarks" id="remarks" cols="30" rows="6" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Supporting Officer</label>
+                            <label for="" class="form-control-label">Supporting Officer Code</label>
                             <input type="text" class="form-control" required>
                         </div>
                     </div>
@@ -166,12 +163,24 @@ if(isset($_GET['logout'])) {
         </div>
     </main>
     <footer>
-        <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
-            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
+    <marquee behavior="alternate" direction="">
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Faith, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').value = today;
+        });
+
+        $(document).ready(function() {
+            $('.preloader').fadeOut('slow', function() {
+                $(this).remove()
+            }).delay(100);
+        });
+    </script>
     <script>
         $(document).ready(()=>{})
         $('.preloader').fadeOut('slow', function(){
