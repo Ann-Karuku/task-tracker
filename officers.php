@@ -9,8 +9,25 @@ $sql="SELECT * FROM `officers` WHERE Officer_Designation='Officer'";
 $result = mysqli_query($conn, $sql);
 
 
+// Check if delete request is made
+if(isset($_GET['Officer_Code'])) {
+    $Officer_Code= $_GET['Officer_Code'];
+    $sql_delete = "DELETE FROM `officers` WHERE Officer_Code= $Officer_Code";
 
+    if(mysqli_query($conn, $sql_delete)) {
+        echo '<div class="alert alert-success" role="alert">Officer deleted successfully.</div>';
+    } else {
+        echo '<div class="alert alert-danger" role="alert">Error deleting officer: ' . mysqli_error($conn) . '</div>';
+    }
+}
+
+$sql = "SELECT * FROM `officers` WHERE Officer_Designation='Officer'";
+$result = mysqli_query($conn, $sql);
 ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +77,7 @@ $result = mysqli_query($conn, $sql);
             <span class="text-fade">navigation</span>
         </div>
         <div class="sidebar-menu">
-            <a href="index.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -107,7 +124,7 @@ $result = mysqli_query($conn, $sql);
                         <th>Designation</th>
                         <th>Phone Number</th>
                         <th>Department</th>
-                        <th>Remarks</th>
+                        <th>Password</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -144,12 +161,20 @@ $result = mysqli_query($conn, $sql);
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
             &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
     <script>
+
+    // function confirmDelete(Officer_Code) {
+    //     var confirmDelete = confirm("Are you sure you want to delete this officer?");
+    //     if (confirmDelete) {
+    //         window.location.href = "?Officer_Code" + Officer_Code;
+    //     }
+    // }
+
         $(document).ready(()=>{
             $('#table_id').DataTable({
                 scrollX: true,
@@ -164,6 +189,8 @@ $result = mysqli_query($conn, $sql);
                 $(this).remove()
             }).delay(100)
         })
+
+    
     </script>
 </body>
 </html>

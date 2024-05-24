@@ -12,6 +12,14 @@ session_start();
         // Retrieve the name from session
     $officer_name=$_SESSION['officer_name'];
 
+ 
+if(isset($_GET['logout'])) {
+    // Destroy session
+    session_destroy();
+    // Redirect to login page
+    header("Location: index.php");
+    exit; // Ensure script stops executing after redirection
+}
 
 ?>
 <!DOCTYPE html>
@@ -118,10 +126,9 @@ session_start();
         </div>
     </main>
     <footer>
-        <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
-            <br>
-            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Brian, Delron, Keziah and Daniel</span>
+    <marquee behavior="alternate" direction="">
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Faith, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
