@@ -15,9 +15,9 @@ if(isset($_GET['Officer_Code'])) {
     $sql_delete = "DELETE FROM `officers` WHERE Officer_Code= $Officer_Code";
 
     if(mysqli_query($conn, $sql_delete)) {
-        echo '<div class="alert alert-success" role="alert">Officer deleted successfully.</div>';
-    } else {
-        echo '<div class="alert alert-danger" role="alert">Error deleting officer: ' . mysqli_error($conn) . '</div>';
+        header("Location: tasks.php?error=Officer deleted successfully.!"); 
+    } else {        
+        header("Location: tasks.php?error=Error deleting officer:".mysqli_error($conn)); 
     }
 }
 
@@ -87,7 +87,7 @@ $result = mysqli_query($conn, $sql);
             </div>
             <div class="drop-content">
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
+                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
             </div>
             <div class="drop">
                 <span>
@@ -117,6 +117,15 @@ $result = mysqli_query($conn, $sql);
         <div class="content-body">
             <table id="table_id" width="100%" class="cell-border hover nowrap">
                 <thead>
+                     <!-- display the error -->
+                     <?php if (isset($_GET['error'])) { ?>
+                                <p class="error"><?php echo $_GET['error']; ?></p>
+                            <?php } ?>
+
+                            <!-- Display success message -->
+                            <?php if (isset($_GET['success'])) { ?>
+                                        <p class="success"><?php echo $_GET['success']; ?></p>
+                            <?php } ?>
                     <tr>
                         <th>Officer Picture</th>                        
                         <th>Officer code</th>
@@ -157,7 +166,7 @@ $result = mysqli_query($conn, $sql);
                         <input type="hidden" name="Officer_Code" value="<?php  $record['Officer_Code'];?>">
                         <a href="edit.php?Officer_Code=<?php echo $record['Officer_Code']?>" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                      
-                            <a href="?Officer_Code=<?php echo $record['Officer_Code']; ?>" class="btn btn-danger" onclick="confirmDelete(<?php echo $record['Officer_Code']; ?>)"><i class="feather icon-trash-2"></i></a>
+                            <a href="?Officer_Code=<?php echo $record['Officer_Code']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -174,12 +183,9 @@ $result = mysqli_query($conn, $sql);
     <script src="assets/js/custom.js"></script>
     <script>
 
-    function confirmDelete(Officer_Code) {
-        var confirmDelete = confirm("Are you sure you want to delete this officer?");
-        if (confirmDelete) {
-            window.location.href = "?Officer_Code" + Officer_Code;
-        }
-    }
+    function checkDelete(){
+    return confirm('Are you sure?');
+     }
 
         $(document).ready(()=>{
             $('#table_id').DataTable({
