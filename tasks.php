@@ -20,9 +20,9 @@ if(isset($_GET['ID'])) {
     $sql_delete = "DELETE FROM `tasks` WHERE Task_ID= $Task_ID";
 
     if(mysqli_query($conn, $sql_delete)) {
-        header("Location: officers.php?error=Task deleted successfully.!"); 
+        header("Location:tasks.php?error=Task deleted successfully.!"); 
     } else {
-        header("Location: officers.php?error=Error deleting Task:".mysqli_error($conn)); 
+        header("Location:tasks.php?error=Error deleting Task:".mysqli_error($conn)); 
     }
 }
 
@@ -88,6 +88,7 @@ $result = $conn->query($sql);
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
                 <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Task</span></a>
             </div>
+           
 
             <?php if ($role === 'Admin'): ?>
             <div class="drop">
@@ -99,7 +100,7 @@ $result = $conn->query($sql);
             </div>
             <div class="drop-content">
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
+                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
             </div>
             <?php endif; ?>
 
@@ -141,8 +142,12 @@ $result = $conn->query($sql);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if ($result->num_rows > 0): ?>
-                        <?php while ($row = $result->fetch_assoc()): ?>
+                    <?php
+                //To tell you when no officers are in the DB
+					if (mysqli_num_rows($result)==0) {
+							echo '<span style="color:#0066cc;">There are no tasks.</span>';
+						}
+                        while ($row = $result->fetch_assoc()): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($row['Date']); ?></td>
                                 <td><?php echo htmlspecialchars($row['Office_NO']); ?></td>
@@ -157,11 +162,7 @@ $result = $conn->query($sql);
                                 </td>
                             </tr>
                         <?php endwhile; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="8">No tasks found</td>
-                        </tr>
-                    <?php endif; ?>
+
                 </tbody>
             </table>
         </div>
