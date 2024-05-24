@@ -10,7 +10,13 @@ session_start();
     }
         // Retrieve the role from session
     $officer_name=$_SESSION['officer_name'];
-    $officer_code=$_SESSION['officer_code'];
+    if(isset($_GET['logout'])) {
+        // Destroy session
+        session_destroy();
+        // Redirect to login page
+        header("Location: index.php");
+        exit; // Ensure script stops executing after redirection
+    }
 
 ?>
 
@@ -146,8 +152,8 @@ session_start();
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="officer_code" class="form-control-label">Supporting Officer Code</label>
-                            <input type="text" name="Supporting_Officer_Code" class="form-control" value="<?php echo $officer_code?>" required readonly>
+                            <label for="" class="form-control-label">Supporting Officer Code</label>
+                            <input type="text" class="form-control" required>
                         </div>
                     </div>
                 </div>

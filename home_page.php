@@ -12,6 +12,14 @@ session_start();
         // Retrieve the name from session
     $officer_name=$_SESSION['officer_name'];
 
+ 
+if(isset($_GET['logout'])) {
+    // Destroy session
+    session_destroy();
+    // Redirect to login page
+    header("Location: index.php");
+    exit; // Ensure script stops executing after redirection
+}
 
 ?>
 <!DOCTYPE html>
