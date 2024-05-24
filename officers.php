@@ -177,7 +177,7 @@ $result = mysqli_query($conn, $sql);
     function confirmDelete(Officer_Code) {
         var confirmDelete = confirm("Are you sure you want to delete this officer?");
         if (confirmDelete) {
-            window.location.href = "?Officer_Code" + Officer_Code;
+            window.location.href = "?Officer_Code=" + Officer_Code;
         }
     }
 
