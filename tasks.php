@@ -14,6 +14,18 @@ if ($role == '----select user type---') {
 // Retrieve the role from session
 $officer_name = $_SESSION['officer_name'];
 
+// Check if delete request is made
+if(isset($_GET['ID'])) {
+    $Task_ID= $_GET['ID'];
+    $sql_delete = "DELETE FROM `tasks` WHERE Task_ID= $Task_ID";
+
+    if(mysqli_query($conn, $sql_delete)) {
+        header("Location: officers.php?error=Task deleted successfully.!"); 
+    } else {
+        header("Location: officers.php?error=Error deleting Task:".mysqli_error($conn)); 
+    }
+}
+
 // Fetch tasks from the database
 $sql = "SELECT * FROM tasks";
 $result = $conn->query($sql);
@@ -108,6 +120,15 @@ $result = $conn->query($sql);
         <div class="content-body">
             <table id="table_id" width="100%" class="cell-border hover nowrap">
                 <thead>
+                      <!-- display the error -->
+                      <?php if (isset($_GET['error'])) { ?>
+                                <p class="error"><?php echo $_GET['error']; ?></p>
+                            <?php } ?>
+
+                            <!-- Display success message -->
+                            <?php if (isset($_GET['success'])) { ?>
+                                        <p class="success"><?php echo $_GET['success']; ?></p>
+                            <?php } ?>
                     <tr>
                         <th>Date</th>
                         <th>Office N0</th>
@@ -132,7 +153,7 @@ $result = $conn->query($sql);
                                 <td><?php echo htmlspecialchars($row['Remarks']); ?></td>
                                 <td>
                                     <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                                    <a href="#"class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
+                                    <a href="?ID=<?php echo $row['Task_ID']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash-2"></i></a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -153,6 +174,12 @@ $result = $conn->query($sql);
     </footer>
     <script src="assets/js/custom.js"></script>
     <script>
+
+    function checkDelete(){
+      return confirm('Are you sure?');
+      }
+
+
         $(document).ready(function () {
             $('#table_id').DataTable({
                 scrollX: true,
