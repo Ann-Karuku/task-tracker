@@ -10,6 +10,7 @@ session_start();
     }
         // Retrieve the role from session
     $officer_name=$_SESSION['officer_name'];
+    $officer_code=$_SESSION['officer_code'];
     if(isset($_GET['logout'])) {
         // Destroy session
         session_destroy();
@@ -123,7 +124,7 @@ session_start();
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="office_number" class="form-control-label">Office Number</label>
-                            <input type="number" name="Office_Number" class="form-control" required>
+                            <input type="text" name="Office_Number" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -153,7 +154,7 @@ session_start();
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Supporting Officer Code</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="Supporting_Officer_Code" value="<?php echo $officer_code?>" required readonly>
                         </div>
                     </div>
                 </div>

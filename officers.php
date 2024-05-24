@@ -124,7 +124,7 @@ $result = mysqli_query($conn, $sql);
                         <th>Designation</th>
                         <th>Phone Number</th>
                         <th>Department</th>
-                        <th>Password</th>
+                        <th>Remarks</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -150,8 +150,14 @@ $result = mysqli_query($conn, $sql);
                         <td><?php echo $record['Department']; ?></td>                        
                         <td><?php echo $record['Remarks']; ?></td>
                         <td>
-                            <a href="edit.php?Officer_Code=<?php echo $record['Officer_Code']?>" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
+                            <?php
+                              $_SESSION['officer_code'] = $record['Officer_Code'];
+
+                            ?>
+                        <input type="hidden" name="Officer_Code" value="<?php  $record['Officer_Code'];?>">
+                        <a href="edit.php?Officer_Code=<?php echo $record['Officer_Code']?>" class="btn btn-primary"><i class="feather icon-edit"></i></a>
+                     
+                            <a href="?Officer_Code=<?php echo $record['Officer_Code']; ?>" class="btn btn-danger" onclick="confirmDelete(<?php echo $record['Officer_Code']; ?>)"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <?php } ?>
@@ -168,12 +174,12 @@ $result = mysqli_query($conn, $sql);
     <script src="assets/js/custom.js"></script>
     <script>
 
-    // function confirmDelete(Officer_Code) {
-    //     var confirmDelete = confirm("Are you sure you want to delete this officer?");
-    //     if (confirmDelete) {
-    //         window.location.href = "?Officer_Code" + Officer_Code;
-    //     }
-    // }
+    function confirmDelete(Officer_Code) {
+        var confirmDelete = confirm("Are you sure you want to delete this officer?");
+        if (confirmDelete) {
+            window.location.href = "?Officer_Code" + Officer_Code;
+        }
+    }
 
         $(document).ready(()=>{
             $('#table_id').DataTable({
