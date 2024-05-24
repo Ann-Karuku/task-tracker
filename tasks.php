@@ -1,18 +1,24 @@
 <?php
 session_start();
+include "db_conn.php";
 
 // Check if the role is set in session
-    $role = $_SESSION['user_type'];
+$role = $_SESSION['user_type'];
 
-    if($role=='----select user type---'){
-        // If not, redirect back to the login page
-        header("Location: index.php?error=Please select user type!");
-    }
-        // Retrieve the role from session
-    $officer_name=$_SESSION['officer_name'];
+if ($role == '----select user type---') {
+    // If not, redirect back to the login page
+    header("Location: index.php?error=Please select user type!");
+    exit();
+}
 
+// Retrieve the role from session
+$officer_name = $_SESSION['officer_name'];
 
+// Fetch tasks from the database
+$sql = "SELECT * FROM tasks";
+$result = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,16 +47,13 @@ session_start();
                 </div>
                 <div class="title-text">ICT Task Tracker</div>
             </a>
-            <!--<div class="screen">
-                <span class="feather icon-maximize scre"></span>
-            </div>-->
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span><?php echo $officer_name?></span>
+                <span><?php echo $officer_name ?></span>
                 <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
@@ -88,7 +91,6 @@ session_start();
             </div>
             <?php endif; ?>
 
-
             <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
@@ -118,83 +120,40 @@ session_start();
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($row['Date']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Office_NO']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Department']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Support_Request']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Support_Given']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Officer_Code']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Remarks']); ?></td>
+                                <td>
+                                    <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
+                                    <a href="#"class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="8">No tasks found</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </main>
     <footer>
-        <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
+    <marquee behavior="alternate" direction="">
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Faith, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
     <script>
-        $(document).ready(()=>{
+        $(document).ready(function () {
             $('#table_id').DataTable({
                 scrollX: true,
                 scrollCollapse: true,
@@ -204,10 +163,14 @@ session_start();
                 ]
             });
 
-            $('.preloader').fadeOut('slow', function(){
-                $(this).remove()
-            }).delay(100)
-        })
+            $('.preloader').fadeOut('slow', function () {
+                $(this).remove();
+            }).delay(100);
+        });
     </script>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>
