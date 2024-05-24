@@ -2,6 +2,7 @@
 <?php
 session_start();
 $officer_name=$_SESSION['officer_name'];
+$officer_pic=$_SESSION['profile_pic'];
 
 include_once "db_conn.php";
 
@@ -21,13 +22,7 @@ if(isset($_GET['Officer_Code'])) {
     }
 }
 
-$sql = "SELECT * FROM `officers` WHERE Officer_Designation='Officer'";
-$result = mysqli_query($conn, $sql);
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +58,12 @@ $result = mysqli_query($conn, $sql);
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/images/pic-1.png" alt="" class="image-responsive">
+                <?php if(empty($officer_pic)){?>
+                    <img src="assets/images/pic-5.png" class="image-responsive">
+                    <?php} else {?>
+                    <img src="assets/uploads/<?php echo $officer_pic?>" class="image-responsive">
+                    <?php } ?>
+            
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>
@@ -148,9 +148,7 @@ $result = mysqli_query($conn, $sql);
 			          ?>
                     <tr>
                         <td>
-                            <div class="profile-photo">
-                                <?php echo $record['Profile_Pic']; ?>
-                             </div>
+                        <img class="img-fluid rounded-circle" style="width:65px;height: 50px;" src="assets/uploads/<?php echo $record['Profile_Pic'];?>"  alt="photo.png">
                         </td>
                         <td><?php echo $record['Officer_Code']; ?></td>
                         <td><?php echo $record['Officer_Name']; ?></td>
@@ -183,9 +181,12 @@ $result = mysqli_query($conn, $sql);
     <script src="assets/js/custom.js"></script>
     <script>
 
-    function checkDelete(){
-    return confirm('Are you sure?');
-     }
+    function confirmDelete(Officer_Code) {
+        var confirmDelete = confirm("Are you sure you want to delete this officer?");
+        if (confirmDelete) {
+            window.location.href = "?Officer_Code" + Officer_Code;
+        }
+    }
 
         $(document).ready(()=>{
             $('#table_id').DataTable({
