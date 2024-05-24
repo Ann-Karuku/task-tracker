@@ -10,7 +10,7 @@ session_start();
     }
         // Retrieve the role from session
     $officer_name=$_SESSION['officer_name'];
-
+    $officer_code=$_SESSION['officer_code'];
 
 ?>
 
@@ -64,7 +64,7 @@ session_start();
             <span class="text-fade">navigation</span>
         </div>
         <div class="sidebar-menu">
-            <a href="index.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -147,7 +147,7 @@ session_start();
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="officer_code" class="form-control-label">Supporting Officer Code</label>
-                            <input type="text" name="Supporting_Officer_Code" class="form-control" required>
+                            <input type="text" name="Supporting_Officer_Code" class="form-control" value="<?php echo $officer_code?>" required readonly>
                         </div>
                     </div>
                 </div>
