@@ -87,7 +87,7 @@ $result = mysqli_query($conn, $sql);
             </div>
             <div class="drop-content">
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
+                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
             </div>
             <div class="drop">
                 <span>

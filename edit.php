@@ -117,7 +117,7 @@ $row=mysqli_fetch_assoc($result);
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
-                            <select name="Officer_Designation" id="" class="form-control" value="<?php echo $row['Officer_Designation'] ?>" required>
+                            <select name="Officer_Designation" id="" class="form-control" value="<?php echo $row['Officer_Designation'] ?>" required readonly>
                                             <option value="Admin">Admin</option>
                                             <option value="Officer">Officer</option>
                                         </select>
@@ -138,7 +138,7 @@ $row=mysqli_fetch_assoc($result);
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Code</label>
-                            <input type="number" name="Officer_Code" class="form-control" value="<?php echo $row['Officer_Code'] ?>">
+                            <input type="number" name="Officer_Code" class="form-control" value="<?php echo $row['Officer_Code'] ?>" readonly>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
