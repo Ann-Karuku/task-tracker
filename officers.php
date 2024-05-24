@@ -133,12 +133,7 @@ $result = mysqli_query($conn, $sql);
                         <td><?php echo $record['Department']; ?></td>                        
                         <td><?php echo $record['Remarks']; ?></td>
                         <td>
-                            <?php
-                              $_SESSION['officer_code'] = $record['Officer_Code'];
-
-                            ?>
-                        <input type="hidden" name="Officer_Code" value="<?php  $record['Officer_Code'];?>">
-                            <a href="edit.php" class="btn btn-primary"><i class="feather icon-edit"></i></a>
+                            <a href="edit.php?Officer_Code=<?php echo $record['Officer_Code']?>" class="btn btn-primary"><i class="feather icon-edit"></i></a>
                             <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
