@@ -60,7 +60,7 @@ $result = mysqli_query($conn, $sql);
             <span class="text-fade">navigation</span>
         </div>
         <div class="sidebar-menu">
-            <a href="index.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -69,8 +69,8 @@ $result = mysqli_query($conn, $sql);
                 <span class="feather icon-chevron-right"></span>
             </div>
             <div class="drop-content">
-                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
+                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
+                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
             </div>
             <div class="drop">
                 <span>
@@ -143,8 +143,8 @@ $result = mysqli_query($conn, $sql);
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
-            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Faith, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
