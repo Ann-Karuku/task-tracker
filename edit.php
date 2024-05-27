@@ -57,16 +57,13 @@ $result2 = mysqli_query($conn, $sql2);
                 </div>
                 <div class="title-text">ICT Task Tracker</div>
             </a>
-            <!--<div class="screen">
-                <span class="feather icon-maximize scre"></span>
-            </div>-->
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span><?php echo $officer_name?></span>
+                <span><?php echo $_SESSION['officer_name']; ?></span>
                 <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
@@ -103,6 +100,7 @@ $result2 = mysqli_query($conn, $sql2);
             <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
+
     <main class="content">
         <div class="content-header">
             <div class="title">
@@ -114,6 +112,7 @@ $result2 = mysqli_query($conn, $sql2);
                 <span class="text-fade">Add Officer</span>
             </div>
         </div>
+
         <div class="content-body">
                              <!-- display the error -->
                             <?php if (isset($_GET['error'])) { ?>
@@ -179,17 +178,21 @@ $result2 = mysqli_query($conn, $sql2);
             </form>
         </div>
     </main>
+
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia @2024 By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
+        &copy; @2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia, @2024 Developed By Ann, Deity, Charity, Delron, Brian, Keziah, BrianRop,Faith & Daniel </span>
         </marquee>
     </footer>
+
     <script src="assets/js/custom.js"></script>
     <script>
-        $(document).ready(()=>{})
-        $('.preloader').fadeOut('slow', function(){
+        $(document).ready(() => {
+            // JavaScript code here
+        });
+        $('.preloader').fadeOut('slow', function () {
             $(this).remove()
-        }).delay(100)
+        }).delay(100);
     </script>
 </body>
 </html>
