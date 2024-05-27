@@ -151,7 +151,7 @@ $result = mysqli_query($conn, $sql);
                             ?>
                         <input type="hidden" name="Officer_Code" value="<?php  $record['Officer_Code'];?>">
                             <a href="edit.php" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
+                            <a href="delete.php" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <?php } ?>
