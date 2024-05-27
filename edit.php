@@ -10,6 +10,24 @@ $sql="SELECT * FROM `officers` WHERE Officer_Code='$officer_code'";
 $result = mysqli_query($conn, $sql);
 $row=mysqli_fetch_assoc($result);
 
+if(isset($_POST['submit'])){
+    
+$name=$_POST['Officer_Name'];
+$designation=$_POST['Officer_Designation'];
+$contact=$_POST['Officer_Contact'];
+$remarks=$_POST['Remarks'];
+$image=$_POST['image'];
+
+
+$sql2="UPDATE `officers` SET `Officer_Name`='$name',`Officer_Designation`='$designation',`Officer_Contact`='$contact'
+    ,`Remarks`='$remarks',`Profile_Pic`='$image' WHERE Officer_Code=$officer_code";
+$result2 = mysqli_query($conn, $sql2);
+    if($result2){
+        header("Location:officers.php?success=Updated successfully!");
+    }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,7 +124,7 @@ $row=mysqli_fetch_assoc($result);
                             <?php if (isset($_GET['success'])) { ?>
                                         <p class="success"><?php echo $_GET['success']; ?></p>
                             <?php } ?>
-            <form action= "create_officer.php" method="post" enctype="multipart/form-data">
+            <form action= "" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
@@ -117,9 +135,9 @@ $row=mysqli_fetch_assoc($result);
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
-                            <select name="Officer_Designation" id="" class="form-control" value="<?php echo $row['Officer_Designation'] ?>" required readonly>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Officer">Officer</option>
+                            <select class="form-control" name="Officer_Designation" value="<?php echo $row['Officer_Designation'] ?>" readonly required>
+                                            <option >Admin</option>
+                                            <option >Officer</option>
                                         </select>
                         </div>
                     </div>
@@ -155,8 +173,9 @@ $row=mysqli_fetch_assoc($result);
                         </div>
                     </div>
                 </div>
-                <input type="submit" value="Update" class="btn btn-primary">
-                <input type="reset" value="Clear" class="btn btn-warning">
+                <input type="submit" value="Update" name="submit" class="btn btn-primary">
+                <a href
+                <input type="reset" value="Cancel" class="btn btn-warning">
             </form>
         </div>
     </main>
