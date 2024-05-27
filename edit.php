@@ -10,6 +10,61 @@ $sql="SELECT * FROM `officers` WHERE Officer_Code='$officer_code'";
 $result = mysqli_query($conn, $sql);
 $row=mysqli_fetch_assoc($result);
 
+if(isset($_POST['submit'])){
+    
+$name=$_POST['Officer_Name'];
+$designation=$_POST['Officer_Designation'];
+$contact=$_POST['Officer_Contact'];
+$remarks=$_POST['Remarks'];
+$old_pp=$_POST['old_pp'];
+
+
+if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
+         
+        
+    $img_name = $_FILES['image']['name'];
+    $tmp_name = $_FILES['image']['tmp_name'];
+    $error = $_FILES['image']['error'];
+    
+    if($error === 0){
+       $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+       $img_ex_to_lc = strtolower($img_ex);
+
+       $allowed_exs = array('jpg', 'jpeg', 'png');
+       if(in_array($img_ex_to_lc, $allowed_exs)){
+          $new_img_name = uniqid($uname, true).'.'.$img_ex_to_lc;
+          $img_upload_path = 'assets/uploads/'.$new_img_name;
+          // Delete old profile pic
+          $old_pp_des = "assets/uploads/$old_pp";
+          if(unlink($old_pp_des)){
+                // just deleted
+                move_uploaded_file($tmp_name, $img_upload_path);
+          }else {
+             // error or already deleted
+                move_uploaded_file($tmp_name, $img_upload_path);
+          }
+          
+
+          // update the Database
+          $sql2="UPDATE `officers` SET `Officer_Name`='$name',`Officer_Designation`='$designation',`Officer_Contact`='$contact'
+          ,`Remarks`='$remarks',`Profile_Pic`='$new_img_name' WHERE Officer_Code=$officer_code";
+         $result2 = mysqli_query($conn, $sql2);
+          if($result2){
+              header("Location:officers.php?success=Updated successfully!");
+          }
+           exit;
+       }else {
+         // header("Location: ../edit.php?error2=You cant upload files of this type");
+          exit;
+       }
+    }else {
+      // header("Location: ../edit.php?error2=unknown error occurred!");
+       exit;
+    }
+ }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,16 +94,13 @@ $row=mysqli_fetch_assoc($result);
                 </div>
                 <div class="title-text">ICT Task Tracker</div>
             </a>
-            <!--<div class="screen">
-                <span class="feather icon-maximize scre"></span>
-            </div>-->
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span><?php echo $officer_name?></span>
+                <span><?php echo $_SESSION['officer_name']; ?></span>
                 <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
@@ -85,6 +137,7 @@ $row=mysqli_fetch_assoc($result);
             <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
+
     <main class="content">
         <div class="content-header">
             <div class="title">
@@ -96,6 +149,7 @@ $row=mysqli_fetch_assoc($result);
                 <span class="text-fade">Add Officer</span>
             </div>
         </div>
+
         <div class="content-body">
                              <!-- display the error -->
                             <?php if (isset($_GET['error'])) { ?>
@@ -106,7 +160,7 @@ $row=mysqli_fetch_assoc($result);
                             <?php if (isset($_GET['success'])) { ?>
                                         <p class="success"><?php echo $_GET['success']; ?></p>
                             <?php } ?>
-            <form action= "create_officer.php" method="post" enctype="multipart/form-data">
+            <form action= "" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
@@ -117,9 +171,9 @@ $row=mysqli_fetch_assoc($result);
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
-                            <select name="Officer_Designation" id="" class="form-control" value="<?php echo $row['Officer_Designation'] ?>" required readonly>
-                                            <option value="Admin">Admin</option>
-                                            <option value="Officer">Officer</option>
+                            <select class="form-control" name="Officer_Designation" value="<?php echo $row['Officer_Designation'] ?>" readonly required>
+                                            <option >Admin</option>
+                                            <option >Officer</option>
                                         </select>
                         </div>
                     </div>
@@ -150,27 +204,38 @@ $row=mysqli_fetch_assoc($result);
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
+                              <!-- display the error -->
+                              <?php if (isset($_GET['error2'])) { ?>
+                                <p class="error"><?php echo $_GET['error2']; ?></p>
+                            <?php } ?>
                             <label for="" class="form-control-label">Passport photo</label>
                               <input type="file" name="image" class="form-control" >
+                              <br>
+                              <img src="assets/uploads/<?php echo $row['Profile_Pic'] ?>"class="rounded-circle" style="width:85px;height: 80px;">
+                              <input type="text" hidden="hidden" name="old_pp" value="<?php echo $row['Profile_Pic'] ?>" >
                         </div>
                     </div>
                 </div>
-                <input type="submit" value="Update" class="btn btn-primary">
-                <input type="reset" value="Clear" class="btn btn-warning">
+                <input type="submit" value="Update" name="submit" class="btn btn-primary">
+                <a href="officers.php" class="link"><input type="reset" value="Cancel" class="btn btn-warning"></a>
             </form>
         </div>
     </main>
+
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia @2024 By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
+        &copy; @2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia, @2024 Developed By Ann, Deity, Charity, Delron, Brian, Keziah, BrianRop,Faith & Daniel </span>
         </marquee>
     </footer>
+
     <script src="assets/js/custom.js"></script>
     <script>
-        $(document).ready(()=>{})
-        $('.preloader').fadeOut('slow', function(){
+        $(document).ready(() => {
+            // JavaScript code here
+        });
+        $('.preloader').fadeOut('slow', function () {
             $(this).remove()
-        }).delay(100)
+        }).delay(100);
     </script>
 </body>
 </html>

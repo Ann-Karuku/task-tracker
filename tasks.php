@@ -100,7 +100,7 @@ $result = $conn->query($sql);
             </div>
             <div class="drop-content">
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
+                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
             </div>
             <?php endif; ?>
 
@@ -169,8 +169,7 @@ $result = $conn->query($sql);
     </main>
     <footer>
     <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
-            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Faith, Keziah & Daniel </span>
+    &copy; @2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia, @2024 Developed By Ann, Deity, Charity, Delron, Brian, Keziah, BrianRop,Faith & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
