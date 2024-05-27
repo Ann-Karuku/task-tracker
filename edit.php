@@ -62,6 +62,15 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
        exit;
     }
  }
+
+ // update the Database
+ $sql2="UPDATE `officers` SET `Officer_Name`='$name',`Officer_Designation`='$designation',`Officer_Contact`='$contact'
+ ,`Remarks`='$remarks' WHERE Officer_Code=$officer_code";
+$result2 = mysqli_query($conn, $sql2);
+ if($result2){
+     header("Location:officers.php?success=Updated successfully!");
+ }
+  exit;
 }
 
 
@@ -172,9 +181,10 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
                             <select class="form-control" name="Officer_Designation" value="<?php echo $row['Officer_Designation'] ?>" readonly required>
-                                            <option >Admin</option>
-                                            <option >Officer</option>
-                                        </select>
+                                     <option >----select user type---</option>
+                                     <option >Officer</option>   
+                                     <option >Admin</option>
+                              </select>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
