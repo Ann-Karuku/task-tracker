@@ -1,17 +1,26 @@
 <?php
 session_start();
 
-    // Retrieve the role from session
+    // Retrieve from session
     $role = $_SESSION['user_type'];
+    $officer_pic=$_SESSION['profile_pic'];
+    $officer_name=$_SESSION['officer_name'];
 
     // Check if the role is set in session
     if($role=='----select user type---'){
         // If not, redirect back to the login page
         header("Location: index.php?error=Please select user type!");
     }
-        // Retrieve the name from session
-    $officer_name=$_SESSION['officer_name'];
+        
 
+ 
+if(isset($_GET['logout'])) {
+    // Destroy session
+    session_destroy();
+    // Redirect to login page
+    header("Location: index.php");
+    exit; // Ensure script stops executing after redirection
+}
 
 ?>
 <!DOCTYPE html>
@@ -48,7 +57,7 @@ session_start();
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/images/pic-1.png" alt="profilepic" class="image-responsive">
+                <img src="assets/uploads/<?php echo $officer_pic?>" alt="profilepic" class="image-responsive">
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>
@@ -118,10 +127,9 @@ session_start();
         </div>
     </main>
     <footer>
-        <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
-            <br>
-            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Brian, Delron, Keziah and Daniel</span>
+    <marquee behavior="alternate" direction="">
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Faith, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>

@@ -2,6 +2,7 @@
 <?php
 session_start();
 $officer_name=$_SESSION['officer_name'];
+$officer_pic=$_SESSION['profile_pic'];
 
 include_once "db_conn.php";
 
@@ -9,6 +10,17 @@ $sql="SELECT * FROM `officers` WHERE Officer_Designation='Officer'";
 $result = mysqli_query($conn, $sql);
 
 
+// Check if delete request is made
+if(isset($_GET['Officer_Code'])) {
+    $Officer_Code= $_GET['Officer_Code'];
+    $sql_delete = "DELETE FROM `officers` WHERE Officer_Code= $Officer_Code";
+
+    if(mysqli_query($conn, $sql_delete)) {
+        header("Location: tasks.php?error=Officer deleted successfully.!"); 
+    } else {        
+        header("Location: tasks.php?error=Error deleting officer:".mysqli_error($conn)); 
+    }
+}
 
 ?>
 
@@ -46,7 +58,12 @@ $result = mysqli_query($conn, $sql);
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/images/pic-1.png" alt="" class="image-responsive">
+                <?php if(empty($officer_pic)){?>
+                    <img src="assets/images/pic-5.png" class="image-responsive">
+                    <?php} else {?>
+                    <img src="assets/uploads/<?php echo $officer_pic?>" class="image-responsive">
+                    <?php } ?>
+            
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>
@@ -60,7 +77,7 @@ $result = mysqli_query($conn, $sql);
             <span class="text-fade">navigation</span>
         </div>
         <div class="sidebar-menu">
-            <a href="index.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -70,7 +87,7 @@ $result = mysqli_query($conn, $sql);
             </div>
             <div class="drop-content">
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
+                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
             </div>
             <div class="drop">
                 <span>
@@ -98,10 +115,10 @@ $result = mysqli_query($conn, $sql);
             </div>
         </div>
         <div class="content-body">
-            <form action= ""method = "POST" enctype="multipart/formdata">
-
-                 <!-- display the error -->
-                 <?php if (isset($_GET['error'])) { ?>
+            <table id="table_id" width="100%" class="cell-border hover nowrap">
+                <thead>
+                     <!-- display the error -->
+                     <?php if (isset($_GET['error'])) { ?>
                                 <p class="error"><?php echo $_GET['error']; ?></p>
                             <?php } ?>
 
@@ -109,10 +126,6 @@ $result = mysqli_query($conn, $sql);
                             <?php if (isset($_GET['success'])) { ?>
                                         <p class="success"><?php echo $_GET['success']; ?></p>
                             <?php } ?>
-
-
-            <table id="table_id" width="100%" class="cell-border hover nowrap">
-                <thead>
                     <tr>
                         <th>Officer Picture</th>                        
                         <th>Officer code</th>
@@ -126,17 +139,16 @@ $result = mysqli_query($conn, $sql);
                 </thead>
                 <tbody>
                 <?php
+                //To tell you when no officers are in the DB
 					if (mysqli_num_rows($result)==0) {
-							echo '<span style="color:#0066cc;">There are no payments at the moment.</span>';
+							echo '<span style="color:#0066cc;">There are no officers.</span>';
 						}
-					
+					//Loop through the database to display all rows
 					while($record = mysqli_fetch_assoc($result)) {	
 			          ?>
                     <tr>
                         <td>
-                            <div class="profile-photo">
-                                <?php echo '<img src="data:image;base64,'.base64_encode($record['Profile_Pic']).'"alt="Profile Pic"'; ?>
-                             </div>
+                        <img class="img-fluid rounded-circle" style="width:65px;height: 50px;" src="assets/uploads/<?php echo $record['Profile_Pic'];?>"  alt="photo.png">
                         </td>
                         <td><?php echo $record['Officer_Code']; ?></td>
                         <td><?php echo $record['Officer_Name']; ?></td>
@@ -150,24 +162,32 @@ $result = mysqli_query($conn, $sql);
 
                             ?>
                         <input type="hidden" name="Officer_Code" value="<?php  $record['Officer_Code'];?>">
-                            <a href="edit.php" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="delete.php" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
+                        <a href="edit.php?Officer_Code=<?php echo $record['Officer_Code']?>" class="btn btn-primary"><i class="feather icon-edit"></i></a>
+                     
+                            <a href="?Officer_Code=<?php echo $record['Officer_Code']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <?php } ?>
                 </tbody>
             </table>
-                    </form>
         </div>
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span>
             &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
     <script>
+
+    function confirmDelete(Officer_Code) {
+        var confirmDelete = confirm("Are you sure you want to delete this officer?");
+        if (confirmDelete) {
+            window.location.href = "?Officer_Code" + Officer_Code;
+        }
+    }
+
         $(document).ready(()=>{
             $('#table_id').DataTable({
                 scrollX: true,
@@ -182,6 +202,8 @@ $result = mysqli_query($conn, $sql);
                 $(this).remove()
             }).delay(100)
         })
+
+    
     </script>
 </body>
 </html>

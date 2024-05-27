@@ -61,6 +61,8 @@ if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
 
                 $_SESSION['officer_name'] = $row['Officer_Name'];
 
+                $_SESSION['profile_pic'] = $row['Profile_Pic'];
+
                 header("Location: home_page.php");
                 exit();
                 }

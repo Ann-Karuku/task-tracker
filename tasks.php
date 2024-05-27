@@ -1,18 +1,36 @@
 <?php
 session_start();
+include "db_conn.php";
 
 // Check if the role is set in session
-    $role = $_SESSION['user_type'];
+$role = $_SESSION['user_type'];
 
-    if($role=='----select user type---'){
-        // If not, redirect back to the login page
-        header("Location: index.php?error=Please select user type!");
+if ($role == '----select user type---') {
+    // If not, redirect back to the login page
+    header("Location: index.php?error=Please select user type!");
+    exit();
+}
+
+// Retrieve the role from session
+$officer_name = $_SESSION['officer_name'];
+
+// Check if delete request is made
+if(isset($_GET['ID'])) {
+    $Task_ID= $_GET['ID'];
+    $sql_delete = "DELETE FROM `tasks` WHERE Task_ID= $Task_ID";
+
+    if(mysqli_query($conn, $sql_delete)) {
+        header("Location:tasks.php?error=Task deleted successfully.!"); 
+    } else {
+        header("Location:tasks.php?error=Error deleting Task:".mysqli_error($conn)); 
     }
-        // Retrieve the role from session
-    $officer_name=$_SESSION['officer_name'];
+}
 
-
+// Fetch tasks from the database
+$sql = "SELECT * FROM tasks";
+$result = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,16 +59,13 @@ session_start();
                 </div>
                 <div class="title-text">ICT Task Tracker</div>
             </a>
-            <!--<div class="screen">
-                <span class="feather icon-maximize scre"></span>
-            </div>-->
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span><?php echo $officer_name?></span>
+                <span><?php echo $officer_name ?></span>
                 <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
@@ -61,7 +76,7 @@ session_start();
             <span class="text-fade">navigation</span>
         </div>
         <div class="sidebar-menu">
-            <a href="index.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -73,6 +88,7 @@ session_start();
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
                 <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Task</span></a>
             </div>
+           
 
             <?php if ($role === 'Admin'): ?>
             <div class="drop">
@@ -84,10 +100,9 @@ session_start();
             </div>
             <div class="drop-content">
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
+                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
             </div>
             <?php endif; ?>
-
 
             <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
@@ -106,6 +121,15 @@ session_start();
         <div class="content-body">
             <table id="table_id" width="100%" class="cell-border hover nowrap">
                 <thead>
+                      <!-- display the error -->
+                      <?php if (isset($_GET['error'])) { ?>
+                                <p class="error"><?php echo $_GET['error']; ?></p>
+                            <?php } ?>
+
+                            <!-- Display success message -->
+                            <?php if (isset($_GET['success'])) { ?>
+                                        <p class="success"><?php echo $_GET['success']; ?></p>
+                            <?php } ?>
                     <tr>
                         <th>Date</th>
                         <th>Office N0</th>
@@ -118,83 +142,46 @@ session_start();
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>7/23/2023</td>
-                        <td>1717</td>
-                        <td>ICT</td>
-                        <td>Printer not printing</td>
-                        <td>Changing ip address</td>
-                        <td>James</td>
-                        <td>Successfully</td>
-                        <td>
-                            <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="feather icon-trash-2"></i></a>
-                        </td>
-                    </tr>
+                    <?php
+                //To tell you when no officers are in the DB
+					if (mysqli_num_rows($result)==0) {
+							echo '<span style="color:#0066cc;">There are no tasks.</span>';
+						}
+                        while ($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($row['Date']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Office_NO']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Department']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Support_Request']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Support_Given']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Officer_Code']); ?></td>
+                                <td><?php echo htmlspecialchars($row['Remarks']); ?></td>
+                                <td>
+                                    <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
+                                    <a href="?ID=<?php echo $row['Task_ID']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash-2"></i></a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+
                 </tbody>
             </table>
         </div>
     </main>
     <footer>
-        <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia</span>
+    <marquee behavior="alternate" direction="">
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia</span><br>
+            &copy; 2024 All Right Reserved <span>Developed By Ann, Deity, Charity, Delron, Brian, Faith, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
     <script>
-        $(document).ready(()=>{
+
+    function checkDelete(){
+      return confirm('Are you sure?');
+      }
+
+
+        $(document).ready(function () {
             $('#table_id').DataTable({
                 scrollX: true,
                 scrollCollapse: true,
@@ -204,10 +191,14 @@ session_start();
                 ]
             });
 
-            $('.preloader').fadeOut('slow', function(){
-                $(this).remove()
-            }).delay(100)
-        })
+            $('.preloader').fadeOut('slow', function () {
+                $(this).remove();
+            }).delay(100);
+        });
     </script>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>

@@ -61,7 +61,7 @@ $officer_name=$_SESSION['officer_name'];
             </div>
             <div class="drop-content">
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
-                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Task</span></a>
+                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
             </div>
             <div class="drop">
                 <span>
