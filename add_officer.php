@@ -130,13 +130,13 @@ $officer_name=$_SESSION['officer_name'];
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Code</label>
-                            <input type="number" name="Officer_Code" class="form-control">
+                            <input type="number" name="Officer_Code" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Password</label>
-                            <input type="text" name="Password" class="form-control">
+                            <input type="text" name="Password" class="form-control" required>
                         
                         </div>
                     </div>
