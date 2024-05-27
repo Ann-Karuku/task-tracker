@@ -19,12 +19,49 @@ $remarks=$_POST['Remarks'];
 $image=$_POST['image'];
 
 
-$sql2="UPDATE `officers` SET `Officer_Name`='$name',`Officer_Designation`='$designation',`Officer_Contact`='$contact'
-    ,`Remarks`='$remarks',`Profile_Pic`='$image' WHERE Officer_Code=$officer_code";
-$result2 = mysqli_query($conn, $sql2);
-    if($result2){
-        header("Location:officers.php?success=Updated successfully!");
+if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
+         
+        
+    $img_name = $_FILES['image']['name'];
+    $tmp_name = $_FILES['image']['tmp_name'];
+    $error = $_FILES['image']['error'];
+    
+    if($error === 0){
+       $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+       $img_ex_to_lc = strtolower($img_ex);
+
+       $allowed_exs = array('jpg', 'jpeg', 'png');
+       if(in_array($img_ex_to_lc, $allowed_exs)){
+          $new_img_name = uniqid($uname, true).'.'.$img_ex_to_lc;
+          $img_upload_path = 'assets/uploads/'.$new_img_name;
+          // Delete old profile pic
+          $old_pp_des = "assets/uploads/$old_pp";
+          if(unlink($old_pp_des)){
+                // just deleted
+                move_uploaded_file($tmp_name, $img_upload_path);
+          }else {
+             // error or already deleted
+                move_uploaded_file($tmp_name, $img_upload_path);
+          }
+          
+
+          // update the Database
+          $sql2="UPDATE `officers` SET `Officer_Name`='$name',`Officer_Designation`='$designation',`Officer_Contact`='$contact'
+          ,`Remarks`='$remarks',`Profile_Pic`='$new_img_name' WHERE Officer_Code=$officer_code";
+         $result2 = mysqli_query($conn, $sql2);
+          if($result2){
+              header("Location:officers.php?success=Updated successfully!");
+          }
+           exit;
+       }else {
+          header("Location: ../edit.php?error="You cant upload files of this type"");
+          exit;
+       }
+    }else {
+       header("Location: ../edit.php?error="unknown error occurred!"");
+       exit;
     }
+ }
 }
 
 
@@ -169,12 +206,14 @@ $result2 = mysqli_query($conn, $sql2);
                         <div class="form-group">
                             <label for="" class="form-control-label">Passport photo</label>
                               <input type="file" name="image" class="form-control" >
+                              <br>
+                              <img src="assets/uploads/<?php echo $row['Profile_Pic'] ?>"class="rounded-circle" style="width:85px;height: 80px;">
+                              <input type="text" hidden="hidden" name="old_pp" value="<?php echo $row['Profile_Pic'] ?>" >
                         </div>
                     </div>
                 </div>
                 <input type="submit" value="Update" name="submit" class="btn btn-primary">
-                <a href
-                <input type="reset" value="Cancel" class="btn btn-warning">
+                <a href="officers.php" class="link"><input type="reset" value="Cancel" class="btn btn-warning"></a>
             </form>
         </div>
     </main>

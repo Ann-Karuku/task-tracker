@@ -148,7 +148,7 @@ if(isset($_GET['Officer_Code'])) {
 			          ?>
                     <tr>
                         <td>
-                        <img class="img-fluid rounded-circle" style="width:65px;height: 50px;" src="assets/uploads/<?php echo $record['Profile_Pic'];?>"  alt="photo.png">
+                        <img class="img-fluid rounded-circle" style="width:45px;height: 40px;" src="assets/uploads/<?php echo $record['Profile_Pic'];?>"  alt="photo.png">
                         </td>
                         <td><?php echo $record['Officer_Code']; ?></td>
                         <td><?php echo $record['Officer_Name']; ?></td>
