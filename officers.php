@@ -60,7 +60,7 @@ if(isset($_GET['Officer_Code'])) {
             <div class="profile-photo">
                 <?php if(empty($officer_pic)){?>
                     <img src="assets/images/pic-5.png" class="image-responsive">
-                    <?php} else {?>
+                    <?php } else {?>
                     <img src="assets/uploads/<?php echo $officer_pic?>" class="image-responsive">
                     <?php } ?>
             
