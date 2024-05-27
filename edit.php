@@ -16,7 +16,7 @@ $name=$_POST['Officer_Name'];
 $designation=$_POST['Officer_Designation'];
 $contact=$_POST['Officer_Contact'];
 $remarks=$_POST['Remarks'];
-$image=$_POST['image'];
+$old_pp=$_POST['old_pp'];
 
 
 if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
@@ -54,11 +54,11 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
           }
            exit;
        }else {
-          header("Location: ../edit.php?error="You cant upload files of this type"");
+         // header("Location: ../edit.php?error2=You cant upload files of this type");
           exit;
        }
     }else {
-       header("Location: ../edit.php?error="unknown error occurred!"");
+      // header("Location: ../edit.php?error2=unknown error occurred!");
        exit;
     }
  }
@@ -204,6 +204,10 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
+                              <!-- display the error -->
+                              <?php if (isset($_GET['error2'])) { ?>
+                                <p class="error"><?php echo $_GET['error2']; ?></p>
+                            <?php } ?>
                             <label for="" class="form-control-label">Passport photo</label>
                               <input type="file" name="image" class="form-control" >
                               <br>

@@ -16,9 +16,9 @@ if(isset($_GET['Officer_Code'])) {
     $sql_delete = "DELETE FROM `officers` WHERE Officer_Code= $Officer_Code";
 
     if(mysqli_query($conn, $sql_delete)) {
-        header("Location: tasks.php?error=Officer deleted successfully.!"); 
+        header("Location: officers.php?error=Officer deleted successfully.!"); 
     } else {        
-        header("Location: tasks.php?error=Error deleting officer:".mysqli_error($conn)); 
+        header("Location: officers.php?error=Error deleting officer:".mysqli_error($conn)); 
     }
 }
 
@@ -163,8 +163,7 @@ if(isset($_GET['Officer_Code'])) {
                             ?>
                         <input type="hidden" name="Officer_Code" value="<?php  $record['Officer_Code'];?>">
                         <a href="edit.php?Officer_Code=<?php echo $record['Officer_Code']?>" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                     
-                            <a href="?Officer_Code=<?php echo $record['Officer_Code']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash-2"></i></a>
+                        <a href="?Officer_Code=<?php echo $record['Officer_Code']?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash-2"></i></a>
                         </td>
                     </tr>
                     <?php } ?>
