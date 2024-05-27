@@ -100,7 +100,7 @@ $result = $conn->query($sql);
             </div>
             <div class="drop-content">
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
+                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
             </div>
             <?php endif; ?>
 
