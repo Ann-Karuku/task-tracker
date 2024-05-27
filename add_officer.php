@@ -88,15 +88,6 @@ $officer_name=$_SESSION['officer_name'];
                 <span class="text-fade">Add Officer</span>
             </div>
         </div>
-
-<?php
- $id = $_GET["id"];
-
- $sql = "SELECT * FROM officers WHERE id=$id";
- $result = $conn->query($sql);
- $row = $result->fetch_assoc($result);
-?>
-
         <div class="content-body">
                              <!-- display the error -->
                             <?php if (isset($_GET['error'])) { ?>
@@ -112,61 +103,54 @@ $officer_name=$_SESSION['officer_name'];
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Name</label>
-                            <input type="text" class="form-control" name="Officer_Name" 
-                             value="<?php echo $row['Officer_Name'] ?>">
+                            <input type="text" class="form-control" name="Officer_Name" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
-                            <select name="Officer_Designation" id="" class="form-control" 
-                            value="<?php echo $row['Officer_Designation'] ?>">
-                                           
+                            <select name="Officer_Designation" id="" class="form-control" required>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Officer">Officer</option>
                                         </select>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Department</label>
-                            <input type="text" class="form-control" name="Department" 
-                            value="<?php echo $row['Department'] ?>">
+                            <input type="text" class="form-control" name="Department" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Contact</label>
-                            <input type="number"name="Officer_Contact"class="form-control"
-                            value="<?php echo $row['Officer_Contact'] ?>">
+                            <input type="number"name="Officer_Contact"class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Code</label>
-                            <input type="number" name="Officer_Code" class="form-control"
-                            value="<?php echo $row['Officer_Code'] ?>">
+                            <input type="number" name="Officer_Code" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Password</label>
-                            <input type="text" name="Password" class="form-control"
-                            value="<?php echo $row['Password'] ?>">
+                            <input type="text" name="Password" class="form-control">
                         
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Remarks</label>
-                            <input type="text" name="Remarks" class="form-control"
-                            value="<?php echo $row['Remarks'] ?>">
+                            <input type="text" name="Remarks" class="form-control">
                         
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Passport photo</label>
-                              <input type="file" name="image" class="form-control"
-                              value="<?php echo $row['image'] ?>">
+                              <input type="file" name="image" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -177,7 +161,7 @@ $officer_name=$_SESSION['officer_name'];
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-        &copy; @2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia, @2024 Developed By Ann, Deity, Charity, Delron, Brian, Keziah, BrianRop,Faith & Daniel </span>
+            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia @2024 By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>
