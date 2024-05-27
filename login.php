@@ -39,6 +39,9 @@ if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
 
     }else{
 
+        // hashing the psw
+        $psw=hash('sha512',$pass);
+
         //sql query to select and compare details entered and those in the DB
         $sql= "SELECT * FROM `officers` WHERE Officer_Code= '$officer_Code' AND Password='$pass'";
         $result = mysqli_query($conn, $sql);//pass the query to the mysql connection
