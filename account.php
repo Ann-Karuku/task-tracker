@@ -1,6 +1,8 @@
 <!-- view_officer.php -->
 <?php
 session_start();
+$officer_name=$_SESSION['officer_name'];
+$role = $_SESSION['user_type'];
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +44,7 @@ session_start();
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span>omar mathias</span>
+                <span><?php echo $officer_name?></span>
                 <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
@@ -65,6 +67,8 @@ session_start();
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
                 <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
             </div>
+
+            <?php if ($role === 'Admin'): ?>
             <div class="drop">
                 <span>
                     <span class="feather icon-users"></span>
@@ -76,6 +80,8 @@ session_start();
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
                 <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
             </div>
+            <?php endif; ?>
+
             <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
@@ -91,7 +97,42 @@ session_start();
             </div>
         </div>
         <div class="content-body">
-            
+        <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <div class="content-body">
+                <img src="assets/images/pic-5.jpg" alt="ProfilePicture" class="img-fluid rounded-circle mb-4" style="height:120px;width:120px;">
+                <h3 class="mb-3"><?php echo $officer_name?></h3>
+            </div>
+        </div>
+    </div>
+        <form action= ".php" method="post" enctype="multipart/form-data">
+        <div class="container">
+    <div class="row">
+        <div class="col-md-4 mx-auto mb-3">
+            <div class="form-group">
+                <label for="" class="form-control-label">Contact</label>
+                <input type="number" name="Officer_Contact" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mx-auto mb-3">
+            <div class="form-group">
+                <label for="" class="form-control-label">Officer Code</label>
+                <input type="text" name="Officer_Code" class="form-control" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mx-auto mb-3 text-right"> <!-- Align to the right -->
+            <div class="form-group">
+                <a href="change_pass.php" class="link">Change Password</a>
+            </div>
+        </div>
+    </div>
+
+
+            </form>
         </div>
     </main>
     <footer>
