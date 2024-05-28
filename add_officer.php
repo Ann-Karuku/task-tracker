@@ -158,7 +158,7 @@ $officer_name=$_SESSION['officer_name'];
                     </div>
                 </div>
                 <input type="submit" value="Submit" class="btn btn-primary">
-                <input type="reset" value="Clear" class="btn btn-warning">
+                <input type="reset" value="Clear" class="btn btn-warning" id="clearButton">
             </form>
         </div>
     </main>
@@ -173,6 +173,18 @@ $officer_name=$_SESSION['officer_name'];
         $('.preloader').fadeOut('slow', function(){
             $(this).remove()
         }).delay(100)
+    </script>
+      <script>
+              // JavaScript to clear inputs
+        document.addEventListener("DOMContentLoaded", function() {
+            var clearButton = document.getElementById('clearButton');
+            var inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
+            clearButton.addEventListener('click', function() {
+                inputs.forEach(function(input) {
+                    input.value = '';
+                });
+            });
+        });
     </script>
 </body>
 </html>
