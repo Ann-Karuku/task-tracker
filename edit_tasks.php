@@ -1,7 +1,6 @@
 <?php
 session_start();
 $officer_name=$_SESSION['officer_name'];
-$officer_code=$_GET['Officer_Code'];
 
 include_once "db_conn.php";
 
@@ -57,6 +56,8 @@ if (isset($_POST['update'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -181,7 +182,7 @@ if (isset($_POST['update'])) {
                     </div>
                 </div>
                 <input type="submit" name="update" value="Update Task" class="btn btn-primary">
-                <a href="tasks.php" class="btn btn-secondary">Cancel</a>
+                <a href="tasks.php" class="btn btn-warning">Cancel</a>
             </form>
         </div>
     </main>

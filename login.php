@@ -40,7 +40,7 @@ if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
     }else{
 
         // hashing the psw
-        $psw=hash('sha512',$pass);
+       // $psw=hash('sha512',$psw);
 
         //sql query to select and compare details entered and those in the DB
         $sql= "SELECT * FROM `officers` WHERE Officer_Code= '$officer_Code' AND Password='$pass'";
@@ -63,8 +63,6 @@ if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
                 $_SESSION['officer_code'] = $row['Officer_Code'];
 
                 $_SESSION['officer_name'] = $row['Officer_Name'];
-
-                $_SESSION['profile_pic'] = $row['Profile_Pic'];
 
                 header("Location: home_page.php");
                 exit();

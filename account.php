@@ -1,13 +1,6 @@
 <!-- view_officer.php -->
 <?php
 session_start();
-if(isset($_GET['logout'])) {
-    // Destroy session
-    session_destroy();
-    // Redirect to login page
-    header("Location: index.php");
-    exit; // Ensure script stops executing after redirection
-}
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +9,8 @@ if(isset($_GET['logout'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -48,7 +43,7 @@ if(isset($_GET['logout'])) {
             </div>
             <div class="profile-description">
                 <span>omar mathias</span>
-                <a href="?logout=true"><span class="feather icon-power text-danger"></span></a>
+                <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
     </header>
@@ -67,8 +62,8 @@ if(isset($_GET['logout'])) {
                 <span class="feather icon-chevron-right"></span>
             </div>
             <div class="drop-content">
-                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
-                <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
+                <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
+                <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Tasks</span></a>
             </div>
             <div class="drop">
                 <span>
@@ -87,12 +82,12 @@ if(isset($_GET['logout'])) {
     <main class="content">
         <div class="content-header">
             <div class="title">
-                <h4>Task</h4>
+                <h4>Account Settings</h4>
             </div>
             <div class="navigation">
                 <span><a href="index.php"><i class="feather icon-home"></i></a></span>
                 <span>/</span>
-                <span class="text-fade">View officer</span>
+                <span class="text-fade">Account Settings</span>
             </div>
         </div>
         <div class="content-body">

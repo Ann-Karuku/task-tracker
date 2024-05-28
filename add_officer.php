@@ -9,6 +9,8 @@ $officer_name=$_SESSION['officer_name'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -74,7 +76,7 @@ $officer_name=$_SESSION['officer_name'];
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
                 <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
             </div>
-            <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
+            <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
     <main class="content">

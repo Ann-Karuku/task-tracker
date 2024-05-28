@@ -81,6 +81,8 @@ $result2 = mysqli_query($conn, $sql2);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -143,7 +145,7 @@ $result2 = mysqli_query($conn, $sql2);
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
                 <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
             </div>
-            <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
+            <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
 
@@ -227,7 +229,7 @@ $result2 = mysqli_query($conn, $sql2);
                     </div>
                 </div>
                 <input type="submit" value="Update" name="submit" class="btn btn-primary">
-                <a href="officers.php" class="link"><input type="reset" value="Cancel" class="btn btn-warning"></a>
+                <a href="officers.php" class="btn btn-warning">Cancel</a>
             </form>
         </div>
     </main>
