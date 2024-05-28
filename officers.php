@@ -2,7 +2,6 @@
 <?php
 session_start();
 $officer_name=$_SESSION['officer_name'];
-$officer_pic=$_SESSION['profile_pic'];
 
 include_once "db_conn.php";
 
