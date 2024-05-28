@@ -1,9 +1,10 @@
 <?php
 session_start();
+include "db_conn.php";
 
     // Retrieve from session
     $role = $_SESSION['user_type'];
-    $officer_pic=$_SESSION['profile_pic'];
+    $officer_code=$_SESSION['officer_code'];
     $officer_name=$_SESSION['officer_name'];
 
     // Check if the role is set in session
@@ -11,17 +12,20 @@ session_start();
         // If not, redirect back to the login page
         header("Location: index.php?error=Please select user type!");
     }
-        
 
- 
-if(isset($_GET['logout'])) {
-    // Destroy session
-    session_destroy();
-    // Redirect to login page
-    header("Location: index.php");
-    exit; // Ensure script stops executing after redirection
-}
+    // Get user profile image from database
+    $sql = "SELECT `Profile_Pic` FROM `officers` WHERE Officer_Code=$officer_code";
+    $result = mysqli_query($conn, $sql);
 
+    if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $profile_image = $row['Profile_Pic'];
+    } else {
+    // Default profile image if not found
+    $profile_image = "pic-5.jpg";
+    }
+    mysqli_close($conn);
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +33,8 @@ if(isset($_GET['logout'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -57,7 +63,7 @@ if(isset($_GET['logout'])) {
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/uploads/<?php echo $officer_pic?>" alt="profilepic" class="image-responsive">
+                <img src="<?php echo $profile_image; ?>" alt="profilepic" class="image-responsive">
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>

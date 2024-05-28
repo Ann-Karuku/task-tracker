@@ -1,27 +1,54 @@
 <?php
 session_start();
+$officer_name=$_SESSION['officer_name'];
 
-// Check if the role is set in session
-    $role = $_SESSION['user_type'];
+include_once "db_conn.php";
 
-    if($role=='----select user type---'){
-        // If not, redirect back to the login page
-        header("Location: index.php?error=Please select user type!");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_GET['id'])) {
+    $task_id = intval($_GET['id']);
+
+    $query = "SELECT * FROM tasks WHERE Task_ID = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $task_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $task = $result->fetch_assoc();
+    } else {
+        echo "Task not found!";
+        exit;
     }
-        // Retrieve the role from session
-    $officer_name=$_SESSION['officer_name'];
-    $officer_code=$_SESSION['officer_code'];
-    if(isset($_GET['logout'])) {
-        // Destroy session
-        session_destroy();
-        // Redirect to login page
-        header("Location: index.php");
-        exit; // Ensure script stops executing after redirection
-    }
+} else {
+    echo "Invalid Request!";
+    exit;
+}
 
+if (isset($_POST['update'])) {
+    $date = $_POST['date'];
+    $office_no = $_POST['office_no'];
+    $department = $_POST['department'];
+    $support_request = $_POST['support_request'];
+    $support_given = $_POST['support_given'];
+    $officer_code = $_POST['officer_code'];
+    $remarks = $_POST['remarks'];
+
+    $update_query = "UPDATE tasks SET Date = ?, Office_NO = ?, Department = ?, Support_Request = ?, Support_Given = ?, Officer_Code = ?, Remarks = ? WHERE Task_ID = ?";
+    $stmt = $conn->prepare($update_query);
+    $stmt->bind_param("sssssssi", $date, $office_no, $department, $support_request, $support_given, $officer_code, $remarks, $task_id);
+
+    if ($stmt->execute()) {
+        header("Location: tasks.php?success=Task updated successfully");
+        exit;
+    } else {
+        echo "Error updating task: " . $stmt->error;
+    }
+}
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,16 +80,13 @@ session_start();
                 </div>
                 <div class="title-text">ICT Task Tracker</div>
             </a>
-            <!--<div class="screen">
-                <span class="feather icon-maximize scre"></span>
-            </div>-->
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
                 <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
-                <span><?php echo $officer_name?></span>
+            <span><?php echo $_SESSION['officer_name']; ?></span>
                 <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
@@ -85,8 +109,6 @@ session_start();
                 <a href="add_task.php" class="link"><span class="feather icon-chevron-right"></span><span>New Task</span></a>
                 <a href="tasks.php" class="link"><span class="feather icon-chevron-right"></span><span>View Task</span></a>
             </div>
-     
-            <?php if ($role === 'Admin'): ?>
             <div class="drop">
                 <span>
                     <span class="feather icon-users"></span>
@@ -98,7 +120,6 @@ session_start();
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
                 <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officer</span></a>
             </div>
-            <?php endif; ?>
 
             <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
@@ -106,62 +127,62 @@ session_start();
     <main class="content">
         <div class="content-header">
             <div class="title">
-                <h4>Task</h4>
+                <h4>Edit Task</h4>
             </div>
             <div class="navigation">
                 <span><a href="index.php"><i class="feather icon-home"></i></a></span>
                 <span>/</span>
-                <span class="text-fade">Add Task</span>
+                <span class="text-fade">Edit Task</span>
             </div>
         </div>
         <div class="content-body">
-        <form action="new_task.php" method="post">
+            <form action="" method="post">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                       <div class="form-group">
+                        <div class="form-group">
                             <label for="date" class="form-control-label">Date</label>
-                            <input type="date" name="Date" id="date" class="form-control" required>
+                            <input type="date" name="date" id="date" class="form-control" value="<?php echo htmlspecialchars($task['Date']); ?>" required readonly>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="office_number" class="form-control-label">Office Number</label>
-                            <input type="text" name="Office_Number" class="form-control" required>
+                            <label for="office_no" class="form-control-label">Office Number</label>
+                            <input type="text" name="office_no" class="form-control" value="<?php echo htmlspecialchars($task['Office_NO']); ?>" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="department" class="form-control-label">Department</label>
-                            <input type="text" name="Department" class="form-control" required>
+                            <input type="text" name="department" class="form-control" value="<?php echo htmlspecialchars($task['Department']); ?>" required>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="support_requested" class="form-control-label">Support Requested For</label>
-                            <textarea name="Support_Requested_For" id="support_requested" cols="30" rows="6" class="form-control"></textarea>
+                            <label for="support_request" class="form-control-label">Support Request</label>
+                            <textarea name="support_request" id="support_request" cols="30" rows="6" class="form-control" required><?php echo htmlspecialchars($task['Support_Request']); ?></textarea>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="support_given" class="form-control-label">Support Given</label>
-                            <textarea name="Support_Given" id="support_given" cols="30" rows="6" class="form-control"></textarea>
+                            <textarea name="support_given" id="support_given" cols="30" rows="6" class="form-control" required><?php echo htmlspecialchars($task['Support_Given']); ?></textarea>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="remarks" class="form-control-label">Remarks</label>
-                            <textarea name="Remarks" id="remarks" cols="30" rows="6" class="form-control"></textarea>
+                            <textarea name="remarks" id="remarks" cols="30" rows="6" class="form-control" required><?php echo htmlspecialchars($task['Remarks']); ?></textarea>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
-                            <label for="" class="form-control-label">Supporting Officer Code</label>
-                            <input type="text" class="form-control" name="Supporting_Officer_Code" value="<?php echo $officer_code?>" required readonly>
+                            <label for="officer_code" class="form-control-label">Supporting Officer Code</label>
+                            <input type="text" name="officer_code" class="form-control" value="<?php echo htmlspecialchars($task['Officer_Code']); ?>" required readonly>
                         </div>
                     </div>
                 </div>
-                <input type="submit" value="Submit" class="btn btn-primary">
-                <input type="reset" value="Clear" class="btn btn-warning">
+                <input type="submit" name="update" value="Update Task" class="btn btn-primary">
+                <a href="tasks.php" class="btn btn-warning">Cancel</a>
             </form>
         </div>
     </main>
@@ -172,22 +193,15 @@ session_start();
     </footer>
     <script src="assets/js/custom.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var today = new Date().toISOString().split('T')[0];
-            document.getElementById('date').value = today;
-        });
-
         $(document).ready(function() {
             $('.preloader').fadeOut('slow', function() {
                 $(this).remove()
             }).delay(100);
         });
     </script>
-    <script>
-        $(document).ready(()=>{})
-        $('.preloader').fadeOut('slow', function(){
-            $(this).remove()
-        }).delay(100)
-    </script>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>

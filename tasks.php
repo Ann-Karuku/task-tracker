@@ -37,13 +37,15 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/icons/feather/css/feather.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/jquery.dataTables.css">
-
+    
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.dataTables.js"></script>
@@ -157,8 +159,8 @@ $result = $conn->query($sql);
                                 <td><?php echo htmlspecialchars($row['Officer_Code']); ?></td>
                                 <td><?php echo htmlspecialchars($row['Remarks']); ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-primary"><i class="feather icon-edit"></i></a>
-                                    <a href="?ID=<?php echo $row['Task_ID']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash-2"></i></a>
+                                <a href="edit_tasks.php?id=<?php echo $row['Task_ID']; ?>" class="btn btn-primary"><i class="feather icon-edit"></i></a>
+                                <a href="?ID=<?php echo $row['Task_ID']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="feather icon-trash-2"></i></a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

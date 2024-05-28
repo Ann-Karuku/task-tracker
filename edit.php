@@ -62,6 +62,15 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
        exit;
     }
  }
+
+ // update the Database
+ $sql2="UPDATE `officers` SET `Officer_Name`='$name',`Officer_Designation`='$designation',`Officer_Contact`='$contact'
+ ,`Remarks`='$remarks' WHERE Officer_Code=$officer_code";
+$result2 = mysqli_query($conn, $sql2);
+ if($result2){
+     header("Location:officers.php?success=Updated successfully!");
+ }
+  exit;
 }
 
 
@@ -72,6 +81,8 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
@@ -134,7 +145,7 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
                 <a href="add_officer.php" class="link"><span class="feather icon-chevron-right"></span><span>New Officer</span></a>
                 <a href="officers.php" class="link"><span class="feather icon-chevron-right"></span><span>View Officers</span></a>
             </div>
-            <a href="#" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
+            <a href="account.php" class="link"><span class="feather icon-user"></span><span>Account Settings</span></a>
         </div>
     </aside>
 
@@ -172,10 +183,10 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
                             <select class="form-control" name="Officer_Designation" value="<?php echo $row['Officer_Designation'] ?>" readonly required>
-                            <option >----select user type---</option>
-                                            <option >Admin</option>
-                                            <option >Officer</option>
-                                        </select>
+                                     <option >----select user type---</option>
+                                     <option >Officer</option>   
+                                     <option >Admin</option>
+                              </select>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -218,7 +229,7 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
                     </div>
                 </div>
                 <input type="submit" value="Update" name="submit" class="btn btn-primary">
-                <a href="officers.php" class="link"><input type="reset" value="Cancel" class="btn btn-warning"></a>
+                <a href="officers.php" class="btn btn-warning">Cancel</a>
             </form>
         </div>
     </main>
