@@ -172,6 +172,7 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
                             <select class="form-control" name="Officer_Designation" value="<?php echo $row['Officer_Designation'] ?>" readonly required>
+                            <option >----select user type---</option>
                                             <option >Admin</option>
                                             <option >Officer</option>
                                         </select>

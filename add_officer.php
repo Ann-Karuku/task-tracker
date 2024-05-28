@@ -109,7 +109,8 @@ $officer_name=$_SESSION['officer_name'];
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
-                            <select name="Officer_Designation" id="" class="form-control" required>
+                            <select name="Officer_Designation" id="" class="form-control" required> 
+                                            <option >----select user type---</option>
                                             <option value="Admin">Admin</option>
                                             <option value="Officer">Officer</option>
                                         </select>
