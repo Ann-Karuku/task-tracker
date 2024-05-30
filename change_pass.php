@@ -4,10 +4,7 @@ session_start();
 
 $officer_code=$_SESSION['officer_code'];
 $officer_name=$_SESSION['officer_name'];
-$officer_pic=$_SESSION['officer_pic'];
 $role = $_SESSION['user_type'];
-
-
 
 include_once "db_conn.php";
 
@@ -53,17 +50,7 @@ $row=mysqli_fetch_assoc($result);
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-            <?php
-// Check if the session variable is set and not empty
-if(isset($_SESSION['officer_pic']) && !empty($_SESSION['officer_pic'])) {
-    // Display the image using an <img> tag and set the src attribute to the value of the session variable
-    echo '<img src="' . $_SESSION['officer_pic'] . '" alt="Image">';
-} else {
-    // If the session variable is not set or empty, display a default message or image
-    echo 'Image not found';
-}
-?>
-
+                <img src="assets/images/pic-1.png" alt="" class="image-responsive">
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>
@@ -110,52 +97,45 @@ if(isset($_SESSION['officer_pic']) && !empty($_SESSION['officer_pic'])) {
     <main class="content">
         <div class="content-header">
             <div class="title">
-                <h4>Account Settings</h4>
+                <h4>Change Pasword</h4>
             </div>
             <div class="navigation">
                 <span><a href="index.php"><i class="feather icon-home"></i></a></span>
                 <span>/</span>
-                <span class="text-fade">Account Settings</span>
+                <span class="text-fade">Change Pasword</span>
             </div>
         </div>
+
         <div class="content-body">
-        <div class="row justify-content-center">
-        <div class="col-md-6 text-center">
-            <div class="content-body">
-                <img src="assets/images/<?php echo $officer_pic?>" alt="ProfilePicture" class="img-fluid rounded-circle mb-4" style="height:120px;width:120px;">
-                <h3 class="mb-3"><?php echo $officer_name?></h3>
+    <div class="row justify-content-center">
+        <form action=".php" method="post" enctype="multipart/form-data">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group mb-3">
+                            <label for="" class="form-control-label">Current Password</label>
+                            <input type="password" name="Officer_Contact" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="" class="form-control-label">New Password</label>
+                            <input type="password" name="Officer_Contact" class="form-control">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="" class="form-control-label">Repeat New Password</label>
+                            <input type="password" name="Officer_Contact" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" value="Change" name="submit" class="btn btn-primary">
+                            <a href="account.php" class="btn btn-warning">Back</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
-        <form action= ".php" method="post" enctype="multipart/form-data">
-        <div class="container">
-    <div class="row">
-        <div class="col-md-4 mx-auto mb-3">
-            <div class="form-group">
-                <label for="" class="form-control-label">Contact</label>
-                <input type="number" name="Officer_Contact" class="form-control" value="<?php echo $row['Officer_Contact'] ?>">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 mx-auto mb-3">
-            <div class="form-group">
-                <label for="" class="form-control-label">Officer Code</label>
-                <input type="text" name="Officer_Code" class="form-control" value="<?php echo $row['Officer_Code'] ?>" required readonly>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 mx-auto mb-3 text-center">
-            <div class="form-group">
-                <a href="change_pass.php" class="link">Change Password</a>
-            </div>
-        </div>
-    </div>
+</div>
 
-
-            </form>
-        </div>
+   
     </main>
     <footer>
     <marquee behavior="alternate" direction="">
