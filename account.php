@@ -118,7 +118,8 @@ $row=mysqli_fetch_assoc($result);
         <div class="content-body">
         <div class="row justify-content-center">
         <div class="col-md-6 text-center">
-            <div class="content-body">
+        <div class="content-body">
+            <div style='position: relative; display: inline-block;'>
                <?php 
                 if($row['Profile_Pic']) {
                     echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '" class="img-fluid rounded-circle mb-4" style="height:120px;width:120px;" >';
@@ -127,10 +128,14 @@ $row=mysqli_fetch_assoc($result);
                   }  
                ?>
 
+    <a href="edit_profile.php" style="position: absolute; bottom: -0.5; right: 0; 
+    background-color: white; border-radius: 50%; padding: 5px; 
+    text-decoration: none; display: inline-block;">
+    <i class="fas fa-pen" style="font-size:24px; color: black;"></i>
+    </a>
 
-
-
-
+            
+                </div>
 
                 <h3 class="mb-3"><?php echo $officer_name?></h3>
             </div>
