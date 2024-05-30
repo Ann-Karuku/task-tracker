@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once "db_conn.php";
 
 // Check if the role is set in session
     $role = $_SESSION['user_type'];
@@ -11,13 +12,10 @@ session_start();
         // Retrieve the role from session
     $officer_name=$_SESSION['officer_name'];
     $officer_code=$_SESSION['officer_code'];
-    if(isset($_GET['logout'])) {
-        // Destroy session
-        session_destroy();
-        // Redirect to login page
-        header("Location: index.php");
-        exit; // Ensure script stops executing after redirection
-    }
+   
+    $sql="SELECT * FROM `officers` WHERE Officer_Code='$officer_code'";
+    $result = mysqli_query($conn, $sql);
+    $row=mysqli_fetch_assoc($result);
 
 ?>
 
@@ -59,7 +57,13 @@ session_start();
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/images/pic-1.png" alt="" class="image-responsive">
+            <?php
+        if($row['Profile_Pic']) {
+            echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '"">';
+        } else {
+        echo '<img src="assets/images/pic-5.jpg">';
+        }
+        ?>
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>

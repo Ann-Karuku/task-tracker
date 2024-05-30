@@ -2,12 +2,16 @@
 <?php
 session_start();
 $officer_name=$_SESSION['officer_name'];
+$officer_code=$_SESSION['officer_code'];
 
 include_once "db_conn.php";
 
 $sql="SELECT * FROM `officers` WHERE Officer_Designation='Officer'";
 $result = mysqli_query($conn, $sql);
 
+$sql2="SELECT * FROM `officers` WHERE Officer_Code='$officer_code'";
+$result2= mysqli_query($conn, $sql2);
+$row=mysqli_fetch_assoc($result2);
 
 // Check if delete request is made
 if(isset($_GET['Officer_Code'])) {
@@ -59,11 +63,13 @@ if(isset($_GET['Officer_Code'])) {
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <?php if(empty($officer_pic)){?>
-                    <img src="assets/images/pic-5.png" class="image-responsive">
-                    <?php } else {?>
-                    <img src="assets/uploads/<?php echo $officer_pic?>" class="image-responsive">
-                    <?php } ?>
+            <?php
+        if($row['Profile_Pic']) {
+            echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '"">';
+        } else {
+        echo '<img src="assets/images/pic-5.jpg">';
+        }
+        ?>
             
             </div>
             <div class="profile-description">

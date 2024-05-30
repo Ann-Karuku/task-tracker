@@ -13,17 +13,11 @@ include "db_conn.php";
         header("Location: index.php?error=Please select user type!");
     }
 
-    // Get user profile image from database
-    $sql = "SELECT `Profile_Pic` FROM `officers` WHERE Officer_Code=$officer_code";
+    $sql="SELECT * FROM `officers` WHERE Officer_Code='$officer_code'";
     $result = mysqli_query($conn, $sql);
+    $row=mysqli_fetch_assoc($result);
 
-    if (mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $profile_image = $row['Profile_Pic'];
-    } else {
-    // Default profile image if not found
-    $profile_image = "pic-5.jpg";
-    }
+    
     mysqli_close($conn);
    
 ?>
@@ -63,7 +57,13 @@ include "db_conn.php";
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="<?php echo $profile_image; ?>" alt="profilepic" class="image-responsive">
+            <?php
+            if($row['Profile_Pic']) {
+            echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '"">';
+        } else {
+        echo '<img src="assets/images/pic-5.jpg">';
+        }
+        ?>
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>

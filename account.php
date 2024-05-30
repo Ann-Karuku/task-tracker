@@ -4,7 +4,6 @@ session_start();
 
 $officer_code=$_SESSION['officer_code'];
 $officer_name=$_SESSION['officer_name'];
-$officer_pic=$_SESSION['officer_pic'];
 $role = $_SESSION['user_type'];
 
 
@@ -54,15 +53,13 @@ $row=mysqli_fetch_assoc($result);
         <div class="profile-tab">
             <div class="profile-photo">
             <?php
-// Check if the session variable is set and not empty
-if(isset($_SESSION['officer_pic']) && !empty($_SESSION['officer_pic'])) {
-    // Display the image using an <img> tag and set the src attribute to the value of the session variable
-    echo '<img src="' . $_SESSION['officer_pic'] . '" alt="Image">';
-} else {
-    // If the session variable is not set or empty, display a default message or image
-    echo 'Image not found';
-}
-?>
+
+    if($row['Profile_Pic']) {
+     echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '" >';
+   } else {
+    echo '<img src="assets/images/pic-5.jpg">';
+   }
+    ?>
 
             </div>
             <div class="profile-description">
@@ -122,18 +119,40 @@ if(isset($_SESSION['officer_pic']) && !empty($_SESSION['officer_pic'])) {
         <div class="row justify-content-center">
         <div class="col-md-6 text-center">
             <div class="content-body">
-                <img src="assets/images/<?php echo $officer_pic?>" alt="ProfilePicture" class="img-fluid rounded-circle mb-4" style="height:120px;width:120px;">
+               <?php 
+                if($row['Profile_Pic']) {
+                    echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '" class="img-fluid rounded-circle mb-4" style="height:120px;width:120px;" >';
+                  } else {
+                   echo '<img src="assets/images/pic-5.jpg">';
+                  }  
+               ?>
+
+
+
+
+
+
                 <h3 class="mb-3"><?php echo $officer_name?></h3>
             </div>
         </div>
     </div>
-        <form action= ".php" method="post" enctype="multipart/form-data">
+
+                          <!-- display the error -->
+                            <?php if (isset($_GET['error'])) { ?>
+                                <p class="error"><?php echo $_GET['error']; ?></p>
+                            <?php } ?>
+
+                            <!-- Display success message -->
+                            <?php if (isset($_GET['success'])) { ?>
+                                        <p class="success"><?php echo $_GET['success']; ?></p>
+                            <?php } ?>
+        <form action= "edit_account.php" method="post" enctype="multipart/form-data">
         <div class="container">
     <div class="row">
         <div class="col-md-4 mx-auto mb-3">
             <div class="form-group">
                 <label for="" class="form-control-label">Contact</label>
-                <input type="number" name="Officer_Contact" class="form-control" value="<?php echo $row['Officer_Contact'] ?>">
+                <input type="text" name="Officer_Contact" class="form-control" value="<?php echo $row['Officer_Contact'] ?>">
             </div>
         </div>
     </div>
@@ -150,10 +169,12 @@ if(isset($_SESSION['officer_pic']) && !empty($_SESSION['officer_pic'])) {
             <div class="form-group">
                 <a href="change_pass.php" class="link">Change Password</a>
             </div>
+            <div class="form-group">
+            <input type="submit" value="Update" name="submit" class="btn btn-primary"> 
+
+            </div>
         </div>
     </div>
-
-
             </form>
         </div>
     </main>

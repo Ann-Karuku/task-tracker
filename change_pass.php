@@ -50,7 +50,13 @@ $row=mysqli_fetch_assoc($result);
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/images/pic-1.png" alt="" class="image-responsive">
+            <?php
+        if($row['Profile_Pic']) {
+            echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '"">';
+        } else {
+        echo '<img src="assets/images/pic-5.jpg">';
+        }
+        ?>
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>

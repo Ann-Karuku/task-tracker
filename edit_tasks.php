@@ -48,6 +48,10 @@ if (isset($_POST['update'])) {
         echo "Error updating task: " . $stmt->error;
     }
 }
+
+    $sql="SELECT * FROM `officers` WHERE Officer_Code='$officer_code'";
+    $result = mysqli_query($conn, $sql);
+    $row=mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +87,13 @@ if (isset($_POST['update'])) {
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/images/pic-1.png" alt="" class="image-responsive">
+            <?php
+        if($row['Profile_Pic']) {
+            echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '"">';
+        } else {
+        echo '<img src="assets/images/pic-5.jpg">';
+        }
+        ?>
             </div>
             <div class="profile-description">
             <span><?php echo $_SESSION['officer_name']; ?></span>

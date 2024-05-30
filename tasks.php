@@ -4,15 +4,14 @@ include "db_conn.php";
 
 // Check if the role is set in session
 $role = $_SESSION['user_type'];
+$officer_name = $_SESSION['officer_name'];
+$officer_code=$_SESSION['officer_code'];
 
 if ($role == '----select user type---') {
     // If not, redirect back to the login page
     header("Location: index.php?error=Please select user type!");
     exit();
 }
-
-// Retrieve the role from session
-$officer_name = $_SESSION['officer_name'];
 
 // Check if delete request is made
 if(isset($_GET['ID'])) {
@@ -29,6 +28,11 @@ if(isset($_GET['ID'])) {
 // Fetch tasks from the database
 $sql = "SELECT * FROM tasks";
 $result = $conn->query($sql);
+
+$sql2="SELECT * FROM `officers` WHERE Officer_Code='$officer_code'";
+$result2= mysqli_query($conn, $sql2);
+$row=mysqli_fetch_assoc($result2);
+
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +68,13 @@ $result = $conn->query($sql);
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/images/pic-1.png" alt="" class="image-responsive">
+            <?php
+        if($row['Profile_Pic']) {
+            echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '"">';
+        } else {
+        echo '<img src="assets/images/pic-5.jpg">';
+        }
+        ?>
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name ?></span>

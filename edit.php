@@ -30,7 +30,7 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
        $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
        $img_ex_to_lc = strtolower($img_ex);
 
-       $allowed_exs = array('jpg', 'jpeg', 'png');
+       $allowed_exs = array('jpg', 'jpeg', 'png','jfif');
        if(in_array($img_ex_to_lc, $allowed_exs)){
           $new_img_name = uniqid($uname, true).'.'.$img_ex_to_lc;
           $img_upload_path = 'assets/uploads/'.$new_img_name;
@@ -51,10 +51,11 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
          $result2 = mysqli_query($conn, $sql2);
           if($result2){
               header("Location:officers.php?success=Updated successfully!");
+              exit;
           }
-           exit;
+           
        }else {
-         // header("Location: ../edit.php?error2=You cant upload files of this type");
+        // header("Location: edit.php?error2=You cant upload files of this type");
           exit;
        }
     }else {
@@ -108,7 +109,13 @@ $result2 = mysqli_query($conn, $sql2);
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
-                <img src="assets/images/pic-1.png" alt="" class="image-responsive">
+            <?php
+        if($row['Profile_Pic']) {
+            echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '"">';
+        } else {
+        echo '<img src="assets/images/pic-5.jpg">';
+        }
+        ?>
             </div>
             <div class="profile-description">
                 <span><?php echo $_SESSION['officer_name']; ?></span>
@@ -183,7 +190,7 @@ $result2 = mysqli_query($conn, $sql2);
                         <div class="form-group">
                             <label for="" class="form-control-label">Officer Designation</label>
                             <select class="form-control" name="Officer_Designation" value="<?php echo $row['Officer_Designation'] ?>" readonly required>
-                                     <option >----select user type---</option>
+                                     
                                      <option >Officer</option>   
                                      <option >Admin</option>
                               </select>
