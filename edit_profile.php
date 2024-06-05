@@ -1,7 +1,7 @@
 <?php
 session_start();
 $officer_name=$_SESSION['officer_name'];
-$officer_code=$_GET['Officer_Code'];
+$officer_code=$_SESSION['officer_code'];
 
 include_once "db_conn.php";
 
@@ -11,10 +11,10 @@ $row=mysqli_fetch_assoc($result);
 
 if(isset($_POST['submit'])){
 
-$old_pp=$_POST['old_pp'];
+    $old_pp=$_POST['old_pp'];
 
 
-if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
+    if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
          
         
     $img_name = $_FILES['image']['name'];
@@ -44,7 +44,7 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
           $sql2="UPDATE `officers` SET `Profile_Pic`='$new_img_name' WHERE Officer_Code=$officer_code";
          $result2 = mysqli_query($conn, $sql2);
           if($result2){
-              header("Location:officers.php?success=Updated successfully!");
+              header("Location:account.php?success=Updated successfully!");
               exit;
           }
            
@@ -163,7 +163,7 @@ if (isset($_FILES['image']['name']) AND !empty($_FILES['image']['name'])) {
                             <?php if (isset($_GET['success'])) { ?>
                                         <p class="success"><?php echo $_GET['success']; ?></p>
                             <?php } ?>
-            <form action= "edit_account_image.php" method="post" enctype="multipart/form-data">
+            <form action= "" method="post" enctype="multipart/form-data">
                 <div class="row">               
                     <div class="col-md-4 mb-3">
                         <div class="form-group">
