@@ -68,7 +68,7 @@
                                         <label for="" class="form-control-label" >Password</label>
                                         <input name="password" type="password" class="form-control" id="myInput">
                                         <br>
-                                        <input type="checkbox" onclick="myFunction()">Show Password
+                                        <input type="checkbox"  onclick="myFunction()">Show Password
                                     </div>
 
                                     <a href="" class="mb-2">forgot password</a>
