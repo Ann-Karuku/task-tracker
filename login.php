@@ -25,7 +25,7 @@ if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
 
      //apply the function to the input
 	$officer_Code=validate($_POST['officer_Code']);
-	$pass=validate($_POST['password']);
+	$pass=$_POST['password'];
 
     //check if the required fields are empty if not login
 	if (empty($officer_Code)) {
@@ -40,10 +40,10 @@ if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
     }else{
 
         // hashing the psw
-       // $psw=hash('sha512',$psw);
+        $psw=hash('sha512',$pass);
 
         //sql query to select and compare details entered and those in the DB
-        $sql= "SELECT * FROM `officers` WHERE Officer_Code= '$officer_Code' AND Password='$pass'";
+        $sql= "SELECT * FROM `officers` WHERE Officer_Code= '$officer_Code' AND Password='$psw'";
         $result = mysqli_query($conn, $sql);//pass the query to the mysql connection
 
 
@@ -52,7 +52,7 @@ if (isset($_POST['officer_Code'])&& isset($_POST['password'])){
 
             $row = mysqli_fetch_assoc($result);
 
-            if ($row['Officer_Code'] === $officer_Code && $row['Password'] === $pass) {
+            if ($row['Officer_Code'] === $officer_Code && $row['Password'] === $psw) {
 
                 if($row['Officer_Designation']!=$role){
                     header("Location: index.php?error=Kindly select the correct role!");

@@ -28,14 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) { 
 
                 	// hashing the psw
-                //$psw=hash('sha512',$Password);
+                $psw=hash('sha512',$Password);
 
                 $sql = "INSERT INTO officers (Officer_Code, Officer_Name, Officer_Designation, Department, Officer_Contact, Remarks, Password, Profile_Pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             
                 $stmt = $conn->prepare($sql);
 
                 // Bind parameters with data types
-                $stmt->bind_param("ssssssss", $Officer_Code, $Officer_Name, $Officer_Designation, $Department, $Officer_Contact, $Remarks, $Password, $fileName);
+                $stmt->bind_param("ssssssss", $Officer_Code, $Officer_Name, $Officer_Designation, $Department, $Officer_Contact, $Remarks, $psw, $fileName);
 
                 if ($stmt->execute()) {
                     $stmt->close();
