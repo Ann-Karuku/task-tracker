@@ -151,36 +151,40 @@ $row=mysqli_fetch_assoc($result);
                             <?php if (isset($_GET['success'])) { ?>
                                         <p class="success"><?php echo $_GET['success']; ?></p>
                             <?php } ?>
-        <form action= "edit_account.php" method="post" enctype="multipart/form-data">
-        <div class="container">
-    <div class="row">
-        <div class="col-md-4 mx-auto mb-3">
-            <div class="form-group">
-                <label for="" class="form-control-label">Contact</label>
-                <input type="text" name="Officer_Contact" class="form-control" value="<?php echo $row['Officer_Contact'] ?>">
+    <form action="edit_account.php" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="" class="form-control-label">Contact</label>
+                    <input type="text" name="Officer_Contact" class="form-control" value="<?php echo $row['Officer_Contact'] ?>">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="" class="form-control-label">Officer Code</label>
+                    <input type="text" name="Officer_Code" class="form-control" value="<?php echo $row['Officer_Code'] ?>" required readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto text-end">
+                <div class="form-group">
+                    <a href="change_pass.php" class="link">Change Password</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group text-start">
+                    <input type="submit" value="Update" name="submit" class="btn btn-primary"> 
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 mx-auto mb-3">
-            <div class="form-group">
-                <label for="" class="form-control-label">Officer Code</label>
-                <input type="text" name="Officer_Code" class="form-control" value="<?php echo $row['Officer_Code'] ?>" required readonly>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 mx-auto mb-3 text-center">
-            <div class="form-group">
-                <a href="change_pass.php" class="link">Change Password</a>
-            </div>
-            <div class="form-group">
-            <input type="submit" value="Update" name="submit" class="btn btn-primary"> 
+</form>
 
-            </div>
-        </div>
-    </div>
-            </form>
+
         </div>
     </main>
     <footer>
