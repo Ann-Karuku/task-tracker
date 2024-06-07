@@ -15,11 +15,16 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
+     // hashing the passwords
+     $psw1=hash('sha512',$current_password);
+     $psw2=hash('sha512',$new_password);
+     $psw3=hash('sha512',$repeat_new_password);
+
     if ($row) {
-        if ($row['Password'] === $current_password) {
-            if ($new_password === $repeat_new_password) {
+        if ($row['Password'] === $psw1) {
+            if ($psw2 === $psw3) {
                 // Update the password
-                $sql2 = "UPDATE `officers` SET Password='$new_password' WHERE Officer_Code='$officer_code'";
+                $sql2 = "UPDATE `officers` SET Password='$psw2' WHERE Officer_Code='$officer_code'";
                 $result2 = mysqli_query($conn, $sql2);
 
                 if ($result2) {
