@@ -35,6 +35,7 @@ include "db_conn.php";
     <link rel="stylesheet" href="assets/icons/feather/css/feather.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="index.css">
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -129,8 +130,23 @@ include "db_conn.php";
                     <h2>Welcome</h2>
                      <p>You are logged in as <?php echo $role; ?>.</p>      
                 </div>
+                <div class="container-cont">
+            <div class="wrapper-cont">
+                <img src="assets/images/Team.jpg" alt="">
+                <img src="assets/images/Team1.jpg" alt="">
+                <img src="assets/images/Team2.jpg" alt="">
+                <img src="assets/images/Team3.jpg" alt="">
+                <img src="assets/images/Team4.jpg" alt="">
+                <img src="assets/images/Team5.jpg" alt="">
+                <img src="assets/images/Team6.jpg" alt="">
             </div>
         </div>
+            </div>
+        </div><br>
+    <div class="head-1">
+            <h2>Meet Our Team</h2>
+        </div>
+    </div>    
     </main>
     <footer>
     <marquee behavior="alternate" direction="">
