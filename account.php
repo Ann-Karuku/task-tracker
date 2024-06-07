@@ -46,9 +46,7 @@ $row=mysqli_fetch_assoc($result);
                 </div>
                 <div class="title-text">ICT Task Tracker</div>
             </a>
-            <!--<div class="screen">
-                <span class="feather icon-maximize scre"></span>
-            </div>-->
+          
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
