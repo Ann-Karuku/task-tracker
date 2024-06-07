@@ -7,7 +7,7 @@ $officer_name=$_SESSION['officer_name'];
 $role = $_SESSION['user_type'];
 
 include_once "db_conn.php";
-
+    
 $sql="SELECT * FROM `officers` WHERE Officer_Code='$officer_code'";
 $result = mysqli_query($conn, $sql);
 $row=mysqli_fetch_assoc($result);
@@ -114,21 +114,30 @@ $row=mysqli_fetch_assoc($result);
 
         <div class="content-body">
     <div class="row justify-content-center">
-        <form action=".php" method="post" enctype="multipart/form-data">
+                             <!-- display the error -->
+                            <?php if (isset($_GET['error'])) { ?>
+                                <p class="error"><?php echo $_GET['error']; ?></p>
+                            <?php } ?>
+
+                            <!-- Display success message -->
+                            <?php if (isset($_GET['success'])) { ?>
+                                        <p class="success"><?php echo $_GET['success']; ?></p>
+                            <?php } ?>
+        <form action="change_pass_val.php" method="post" >
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group mb-3">
                             <label for="" class="form-control-label">Current Password</label>
-                            <input type="password" name="Officer_Contact" class="form-control">
+                            <input type="password" name="Current_Password" class="form-control">
                         </div>
                         <div class="form-group mb-3">
                             <label for="" class="form-control-label">New Password</label>
-                            <input type="password" name="Officer_Contact" class="form-control">
+                            <input type="password" name="New_Password" class="form-control">
                         </div>
                         <div class="form-group mb-3">
                             <label for="" class="form-control-label">Repeat New Password</label>
-                            <input type="password" name="Officer_Contact" class="form-control">
+                            <input type="password" name="Repeat_New_Password" class="form-control">
                         </div>
                         <div class="mb-3">
                             <input type="submit" value="Change" name="submit" class="btn btn-primary">
