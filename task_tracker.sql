@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2024 at 10:32 AM
+-- Generation Time: Jun 11, 2024 at 09:35 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -43,11 +43,10 @@ CREATE TABLE `officers` (
 --
 
 INSERT INTO `officers` (`Officer_Code`, `Officer_Name`, `Officer_Designation`, `Department`, `Officer_Contact`, `Remarks`, `Profile_Pic`, `Password`) VALUES
-('001', 'Felix Kinyua', 'Admin', 'ICT', ' 000000000', '', '666016cf6940f9.81274833.jpeg', 'Felix1234'),
-('003', 'Faith', 'Officer', 'ICT', '0712345678', 'excellent', '66545b7d791300.58080572.jpg', 'Faith123'),
+('001', 'Felix Kinyua', 'Admin', 'ICT', '0712345678', '', 'girl_with_vr_headset-t2.jpg', '7390f1767a571aa815790509019764fe0a526a1c80173bd8c14840b8563f133786315eb12134a1aa85f4c70b842a3853b94322980e9e9c244fc6963bd7ef4250'),
 ('004', 'Charity Mwangi', 'Officer', 'ICT', '0100000000', '', '6656efc7d59c09.38286005.jpg', '037f118af192c1db14d6a437df58dc39fdd2ea0ef0f739c764'),
 ('008', 'Sareto', 'Officer', 'ICT', '0712345678', '', '1587159479421.jpg', '469992af7496d5855f5afd158a4862bb698013a487b12fc489a992b07c37ea6a0619ac414b87eb905d2ba4563d1d975f29e8b9c5fe9188ea7cef38ba7858e6a2'),
-('009', 'Deity', 'Admin', 'ICT', '01010101001', '', 'Nail001.jpg', 'f8c2f5310dc1b316980c22a86f25beadb30ca6cdd1b9d03eddc2483ddec1583fa3a9564c4cf82560119ea93a2663d018ab6d1111cb173d222a2669f026998040');
+('009', 'Deity', 'Officer', 'ICT', '01010101001', '', 'Nail001.jpg', 'f8c2f5310dc1b316980c22a86f25beadb30ca6cdd1b9d03eddc2483ddec1583fa3a9564c4cf82560119ea93a2663d018ab6d1111cb173d222a2669f026998040');
 
 -- --------------------------------------------------------
 
