@@ -184,7 +184,7 @@ $row=mysqli_fetch_assoc($result);
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; 2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith and Cynthia @2024 By Ann, Deity, Charity, Delron, Brian, Keziah & Daniel </span>
+            &copy; 2024 All Rights Reserved 
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>

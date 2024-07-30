@@ -190,7 +190,7 @@ if(isset($_GET['Officer_Code'])) {
     </main>
     <footer>
         <marquee behavior="alternate" direction="">
-            &copy; &copy; @2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia, @2024 Developed By Ann, Deity, Charity, Delron, Brian, Keziah, BrianRop,Faith & Daniel </span>
+            &copy; &copy; @2024 All Rights Reserved 
         </marquee>
     </footer>
     <script src="assets/js/custom.js"></script>

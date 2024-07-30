@@ -252,7 +252,7 @@ $result2 = mysqli_query($conn, $sql2);
 
     <footer>
         <marquee behavior="alternate" direction="">
-        &copy; @2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia, @2024 Developed By Ann, Deity, Charity, Delron, Brian, Keziah, BrianRop,Faith & Daniel </span>
+        &copy; @2024 All Rights Reserved 
         </marquee>
     </footer>
 
