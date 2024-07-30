@@ -76,5 +76,14 @@
             }).delay(100)
         })
     </script>
+     <script>
+    document.getElementById('logoutButton').onclick = function() {
+     var confirmLogout = confirm("Are you sure you want to log out?");
+        if (confirmLogout) {
+        // Redirect to logout page or call your PHP logout script
+        window.location.href = 'logout.php'; 
+        }
+        };
+  </script>
 </body>
 </html>

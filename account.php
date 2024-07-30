@@ -79,6 +79,7 @@ $row=mysqli_fetch_assoc($result);
         </div>
         <div class="sidebar-menu">
             <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="about_us.php" class="link"><span class="feather icon-home"></span><span>About Us</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -218,7 +219,7 @@ $row=mysqli_fetch_assoc($result);
      var confirmLogout = confirm("Are you sure you want to log out?");
         if (confirmLogout) {
         // Redirect to logout page or call your PHP logout script
-        window.location.href = 'logout.php'; // Replace with your actual logout URL
+        window.location.href = 'logout.php'; 
         }
         };
   </script>

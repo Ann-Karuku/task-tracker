@@ -75,7 +75,7 @@ if (!isset($_SESSION['user_type']) || !isset($_SESSION['officer_code']) || !isse
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>
-                <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
+                <a href="logout.php" id="logoutButton"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
     </header>
@@ -86,6 +86,7 @@ if (!isset($_SESSION['user_type']) || !isset($_SESSION['officer_code']) || !isse
         </div>
         <div class="sidebar-menu">
             <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="about_us.php" class="link"><span class="feather icon-home"></span><span>About Us</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -133,7 +134,7 @@ if (!isset($_SESSION['user_type']) || !isset($_SESSION['officer_code']) || !isse
                 <div class="banner-text">
                     <h1>MINISTRY OF INVESTMENTS, TRADE & INDUSTRY</h1>
                     <h2>STATE DEPARTMENT FOR TRADE</h2>
-                    <h4>ICT DEPARTMENT TECHNICAL SUPPORT REGISTER</h4>
+                    <h4>ICT DEPARTMENT TECHNICAL SUPPORT</h4>
                     <h2>Welcome</h2>
                      <p>You are logged in as <?php echo $role; ?>.</p>      
                 </div>
@@ -167,5 +168,14 @@ if (!isset($_SESSION['user_type']) || !isset($_SESSION['officer_code']) || !isse
             $(this).remove()
         }).delay(100)
     </script>
+     <script>
+    document.getElementById('logoutButton').onclick = function() {
+     var confirmLogout = confirm("Are you sure you want to log out?");
+        if (confirmLogout) {
+        // Redirect to logout page or call your PHP logout script
+        window.location.href = 'logout.php'; 
+        }
+        };
+  </script>
 </body>
 </html>

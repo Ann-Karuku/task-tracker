@@ -106,7 +106,7 @@ if (isset($_POST['update'])) {
             </div>
             <div class="profile-description">
             <span><?php echo $_SESSION['officer_name']; ?></span>
-                <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
+                <a href="logout.php" id="logoutButton"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
     </header>
@@ -117,6 +117,7 @@ if (isset($_POST['update'])) {
         </div>
         <div class="sidebar-menu">
             <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
+            <a href="about_us.php" class="link"><span class="feather icon-home"></span><span>About Us</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
@@ -218,6 +219,15 @@ if (isset($_POST['update'])) {
             }).delay(100);
         });
     </script>
+     <script>
+    document.getElementById('logoutButton').onclick = function() {
+     var confirmLogout = confirm("Are you sure you want to log out?");
+        if (confirmLogout) {
+        // Redirect to logout page or call your PHP logout script
+        window.location.href = 'logout.php'; 
+        }
+        };
+  </script>
 </body>
 </html>
 
