@@ -27,20 +27,25 @@ if (isset($_POST['officer_Code']) && isset($_POST['password'])) {
     } else if (empty($password)) {
         header("Location: index.php?error=Please enter password!");
         exit();
-    } else {
-        // Prepare SQL query using prepared statements to prevent SQL injection
-        $stmt = $conn->prepare("SELECT * FROM `officers` WHERE Officer_Code = ?");
-        $stmt->bind_param("s", $officer_Code);
-        $stmt->execute();
-        $result = $stmt->get_result();
 
-        if ($result->num_rows === 1) {
-            $row = $result->fetch_assoc();
+    }else{
 
-            // Check if the password matches
-            if (hash('sha512', $password) === $row['Password']) {
-                // Check if the selected role matches the officer's designation
-                if ($row['Officer_Designation'] !== $role) {
+        // hashing the psw
+       // $psw=hash('sha512',$psw);
+
+        //sql query to select and compare details entered and those in the DB
+        $sql= "SELECT * FROM `officers` WHERE Officer_Code= '$officer_Code' AND Password='$pass'";
+        $result = mysqli_query($conn, $sql);//pass the query to the mysql connection
+
+
+        //check if there's a result of the query
+        if (mysqli_num_rows($result) === 1) {
+
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row['Officer_Code'] === $officer_Code && $row['Password'] === $pass) {
+
+                if($row['Officer_Designation']!=$role){
                     header("Location: index.php?error=Kindly select the correct role!");
                 } else {
                     // Store user information in session

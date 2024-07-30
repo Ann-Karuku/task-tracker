@@ -52,9 +52,7 @@ $row=mysqli_fetch_assoc($result);
                 </div>
                 <div class="title-text">ICT Task Tracker</div>
             </a>
-            <!--<div class="screen">
-                <span class="feather icon-maximize scre"></span>
-            </div>-->
+          
         </div>
         <div class="profile-tab">
             <div class="profile-photo">
@@ -124,7 +122,9 @@ $row=mysqli_fetch_assoc($result);
         <div class="content-body">
         <div class="row justify-content-center">
         <div class="col-md-6 text-center">
-            <div class="content-body">
+        <div class="content-body">
+            
+            <div style='position: relative; display: inline-block;'>
                <?php 
                 if($row['Profile_Pic']) {
                     echo '<img src="assets/uploads/'.$row['Profile_Pic'] . '" class="img-fluid rounded-circle mb-4" style="height:120px;width:120px;" >';
@@ -133,12 +133,15 @@ $row=mysqli_fetch_assoc($result);
                   }  
                ?>
 
-
+            <a href="edit_profile.php" style="position: absolute; bottom: -0.5; right: 0; 
+            background-color: white; border-radius: 50%; padding: 5px; 
+            text-decoration: none; display: inline-block;">
+            <i class="fas fa-pen" style="font-size:24px; color: black;"></i>
+            </a>
+            
                     <div class="edit-icon">
                         <i   ></i>
-                    </div>   
-
-
+                    </div>                   </div>
 
                 <h3 class="mb-3"><?php echo $officer_name?></h3>
             </div>
@@ -154,35 +157,37 @@ $row=mysqli_fetch_assoc($result);
                             <?php if (isset($_GET['success'])) { ?>
                                         <p class="success"><?php echo $_GET['success']; ?></p>
                             <?php } ?>
-        <form action= "edit_account.php" method="post" enctype="multipart/form-data">
-        <div class="container">
-    <div class="row">
-        <div class="col-md-4 mx-auto mb-3">
-            <div class="form-group">
-                <label for="" class="form-control-label">Contact</label>
-                <input type="text" name="Officer_Contact" class="form-control" value="<?php echo $row['Officer_Contact'] ?>">
+    <form action="edit_account.php" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="" class="form-control-label">Contact</label>
+                    <input type="text" name="Officer_Contact" class="form-control" value="<?php echo $row['Officer_Contact'] ?>">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mx-auto mb-3">
+                <div class="form-group">
+                    <label for="" class="form-control-label">Officer Code</label>
+                    <input type="text" name="Officer_Code" class="form-control" value="<?php echo $row['Officer_Code'] ?>" required readonly>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto text-end">
+                <div class="form-group">
+                    <a href="change_pass.php" class="link">Change Password</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group text-start">
+                    <input type="submit" value="Update" name="submit" class="btn btn-primary"> 
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 mx-auto mb-3">
-            <div class="form-group">
-                <label for="" class="form-control-label">Officer Code</label>
-                <input type="text" name="Officer_Code" class="form-control" value="<?php echo $row['Officer_Code'] ?>" required readonly>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 mx-auto mb-3 text-center">
-            <div class="form-group">
-                <a href="change_pass.php" class="link">Change Password</a>
-            </div>
-            <div class="form-group">
-            <input type="submit" value="Update" name="submit" class="btn btn-primary"> 
-
-            </div>
-        </div>
-    </div> 
             </form>
         </div>
     </main>
