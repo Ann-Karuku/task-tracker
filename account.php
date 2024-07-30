@@ -68,7 +68,7 @@ $row=mysqli_fetch_assoc($result);
             </div>
             <div class="profile-description">
                 <span><?php echo $officer_name?></span>
-                <a href="logout.php"><span class="feather icon-power text-danger"></span></a>
+                <a href="logout.php" id="logoutButton"><span class="feather icon-power text-danger"></span></a>
             </div>
         </div>
     </header>
@@ -213,5 +213,15 @@ $row=mysqli_fetch_assoc($result);
             }).delay(100)
         })
     </script>
+  <script>
+    document.getElementById('logoutButton').onclick = function() {
+     var confirmLogout = confirm("Are you sure you want to log out?");
+        if (confirmLogout) {
+        // Redirect to logout page or call your PHP logout script
+        window.location.href = 'logout.php'; // Replace with your actual logout URL
+        }
+        };
+  </script>
+
 </body>
 </html>

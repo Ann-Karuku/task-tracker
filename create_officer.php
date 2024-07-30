@@ -79,8 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $sql = "INSERT INTO officers (Officer_Code, Officer_Name, Officer_Designation, Department, Officer_Contact, Remarks, Password, Profile_Pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                     $stmt = $conn->prepare($sql);
 
-                // Bind parameters with data types
-                $stmt->bind_param("ssssssss", $Officer_Code, $Officer_Name, $Officer_Designation, $Department, $Officer_Contact, $Remarks, $Password, $fileName);
+                    // Bind parameters with data types
+                    $stmt->bind_param("ssssssss", $Officer_Code, $Officer_Name, $Officer_Designation, $Department, $Officer_Contact, $Remarks, $hashedPassword, $fileName);
 
                     if ($stmt->execute()) {
                         $stmt->close();
