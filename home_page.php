@@ -86,7 +86,7 @@ if (!isset($_SESSION['user_type']) || !isset($_SESSION['officer_code']) || !isse
         </div>
         <div class="sidebar-menu">
             <a href="home_page.php" class="link"><span class="feather icon-home"></span><span>Dashboard</span></a>
-            <a href="about_us.php" class="link"><span class="feather icon-home"></span><span>About Us</span></a>
+            <a href="about_us.php" class="link"><span class="feather icon-info"></span><span>About Us</span></a>
             <div class="drop">
                 <span>
                     <span class="feather icon-clipboard"></span>
