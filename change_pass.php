@@ -2,6 +2,13 @@
 <?php
 session_start();
 
+// Check if session variables are set
+if (!isset($_SESSION['user_type']) || !isset($_SESSION['officer_code']) || !isset($_SESSION['officer_name'])) {
+    // If not set, redirect to login page
+    header("Location: index.php?error=Please log in to access this page!");
+    exit();
+}
+
 $officer_code=$_SESSION['officer_code'];
 $officer_name=$_SESSION['officer_name'];
 $role = $_SESSION['user_type'];

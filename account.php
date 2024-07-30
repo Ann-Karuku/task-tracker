@@ -6,6 +6,12 @@ $officer_code=$_SESSION['officer_code'];
 $officer_name=$_SESSION['officer_name'];
 $role = $_SESSION['user_type'];
 
+// Check if session variables are set
+if (!isset($_SESSION['user_type']) || !isset($_SESSION['officer_code']) || !isset($_SESSION['officer_name'])) {
+    // If not set, redirect to login page
+    header("Location: index.php?error=Please log in to access this page!");
+    exit();
+}
 
 
 include_once "db_conn.php";
@@ -128,7 +134,9 @@ $row=mysqli_fetch_assoc($result);
                ?>
 
 
-
+                    <div class="edit-icon">
+                        <i   ></i>
+                    </div>   
 
 
 
@@ -174,11 +182,11 @@ $row=mysqli_fetch_assoc($result);
 
             </div>
         </div>
-    </div>
+    </div> 
             </form>
         </div>
     </main>
-    <footer>
+                                              <footer>
     <marquee behavior="alternate" direction="">
     &copy; @2023 All Right Reserved <span>Developed By Omar, James, Sharon, Anthony, Faith & Cynthia, @2024 Developed By Ann, Deity, Charity, Delron, Brian, Keziah, BrianRop,Faith & Daniel </span>
         </marquee>

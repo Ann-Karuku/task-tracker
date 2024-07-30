@@ -259,6 +259,24 @@ body {
     margin: 20px auto;
  }
 
+ /*edit icon styling*/
+ .edit-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    display: none; /* Initially hidden */
+}
+
+.position-relative:hover .edit-icon {
+    display: block; /* Display on hover */
+}
+
+
 footer {
     position: absolute;
     bottom: 0; left: 250px;

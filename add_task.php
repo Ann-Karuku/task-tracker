@@ -4,6 +4,12 @@ include_once "db_conn.php";
 
 // Check if the role is set in session
     $role = $_SESSION['user_type'];
+    // Check if session variables are set
+if (!isset($_SESSION['user_type']) ) {
+    // If not set, redirect to login page
+    header("Location: index.php?error=Please log in to access this page!");
+    exit();
+}
 
     if($role=='----select user type---'){
         // If not, redirect back to the login page

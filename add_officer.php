@@ -2,6 +2,12 @@
 session_start();
 $officer_name=$_SESSION['officer_name'];
 $officer_code=$_SESSION['officer_code'];
+// Check if session variables are set
+if (!isset !isset($_SESSION['officer_code']) || !isset($_SESSION['officer_name'])) {
+    // If not set, redirect to login page
+    header("Location: index.php?error=Please log in to access this page!");
+    exit();
+}
 
 include_once "db_conn.php";
 
