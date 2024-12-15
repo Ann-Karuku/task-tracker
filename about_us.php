@@ -288,7 +288,7 @@ if (!isset($_SESSION['user_type']) || !isset($_SESSION['officer_code']) || !isse
             <div class="card-front">
                 <img src="assets/images/Bleah.jpeg" alt="Delron">
                 <div class="card-overlay">
-                    <p class="name-title">Delron - Cybersecurity Expert</p>
+                    <p class="name-title">Delron - Cybersecurity Expert, Network Egineer,Software Engineer.</p>
                 </div>
             </div>
             <div class="card-back">
