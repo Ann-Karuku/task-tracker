@@ -150,27 +150,206 @@ if (!isset($_SESSION['user_type']) || !isset($_SESSION['officer_code']) || !isse
             </div>
         </div><br>
     <div class="head-1">
-  <h2>Meet Our Team</h2>
+    <h2>Meet Our Team</h2>
     <h3>Developers:</h3>
-        <ul class="developers-list">
-            <li>Omar</li>
-            <li>James</li>
-            <li>Sharon</li>
-            <li>Anthony</li>
-            <li>Faith</li>
-            <li>Cynthia</li>
-            <li>Ann Karuku</li>
-            <li>Brian Rop</li>
-            <li>Deity Kassums</li>
-            <li>Charity Mwangi</li>
-            <li>Delron</li>
-            <li>Brian Sareto</li>
-            <li>Keziah</li>
-            <li>Faith</li>
-            <li>Tekla</li>
-            <li>Daniel</li>
-        </ul>
+    <div class="team-container">
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Omar.jpeg" alt="Omar">
+                <div class="card-overlay">
+                    <p class="name-title">Omar - Senior Backend Developer</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Omar - Senior Backend Developer with a passion for scalable systems.</p>
+            </div>
         </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/James.png" alt="James">
+                <div class="card-overlay">
+                    <p class="name-title">James - Full-Stack Developer</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>James - Full-stack developer specializing in modern web applications.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/sharon.jpeg" alt="Sharon">
+                <div class="card-overlay">
+                    <p class="name-title">Sharon - Data Scientist</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Sharon - Data Scientist with expertise in predictive analytics.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Antony.jpeg" alt="Antony">
+                <div class="card-overlay">
+                    <p class="name-title">Antony - Cloud Architect</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Antony - Cloud Architect focused on scalable and secure systems.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Faith.jpeg" alt="Faith">
+                <div class="card-overlay">
+                    <p class="name-title">Faith - UI/UX Designer</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Faith - UI/UX Designer crafting intuitive and user-friendly interfaces.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Cynthia.jpeg" alt="Cynthia">
+                <div class="card-overlay">
+                    <p class="name-title">Cynthia - Frontend Developer</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Cynthia - Frontend Developer creating sleek and interactive designs.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Anne.jpeg" alt="Ann">
+                <div class="card-overlay">
+                    <p class="name-title">Ann Karuku - DevOps Engineer</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Ann Karuku - DevOps Engineer ensuring smooth deployment pipelines.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Brian.jpeg" alt="Brian">
+                <div class="card-overlay">
+                    <p class="name-title">Brian - Mobile Developer</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Brian - Mobile Developer building cross-platform applications.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Deighty.jpeg" alt="Deighty">
+                <div class="card-overlay">
+                    <p class="name-title">Deighty - AI Specialist</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Deighty - AI Specialist developing intelligent automation solutions.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Charity.png" alt="Charity">
+                <div class="card-overlay">
+                    <p class="name-title">Charity - Product Manager</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Charity - Product Manager aligning business goals with technical strategies.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Bleah.jpeg" alt="Delron">
+                <div class="card-overlay">
+                    <p class="name-title">Delron - Cybersecurity Expert</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Delron - Cybersecurity Expert securing systems against vulnerabilities.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Koskei.jpeg" alt="Koskei">
+                <div class="card-overlay">
+                    <p class="name-title">Koskei - Blockchain Developer</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Koskei - Blockchain Developer innovating in decentralized technologies.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Keziah.jpeg" alt="Keziah">
+                <div class="card-overlay">
+                    <p class="name-title">Keziah - Machine Learning Engineer</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Keziah - Machine Learning Engineer creating predictive models.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Teklah.jpeg" alt="Teklah">
+                <div class="card-overlay">
+                    <p class="name-title">Teklah - Database Administrator</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Teklah - Database Administrator maintaining data integrity and availability.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="assets/images/Daniel.jpeg" alt="Daniel">
+                <div class="card-overlay">
+                    <p class="name-title">Daniel - Technical Writer</p>
+                </div>
+            </div>
+            <div class="card-back">
+                <p>Daniel - Technical Writer producing clear documentation for complex systems.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
     </div>    
     </main>
     <footer>
